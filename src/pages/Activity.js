@@ -12,11 +12,20 @@ import { useNavigate, useParams } from "react-router-dom";
 import { showFormattedDate } from "../utils/date";
 import ButtonAdd from "../components/atoms/ButtonAdd";
 import ButtonDelete from "../components/atoms/ButtonDelete";
+import Modal from "../components/molecules/Modal";
+import ModalInfo from "../components/atoms/ModalInfo";
 
 const Activity = () => {
 
     const [activity, setActivity] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [openModal, setOpenModal] = useState(false);
+    const [dataActivity, setDataActivity] = useState({
+        id: "",
+        title: "",
+        created_at: "",
+    });
+    const [modalInformation, setModalInformation] = useState(false);
     const navigate = useNavigate();
     const {id} = useParams();
 
@@ -34,7 +43,7 @@ const Activity = () => {
 
 
     const addActivity = async () => {
-        const { success } = await postActivity({title: 'New Activity', email: 'ulhaqitcom@gmail.com'});
+        const { success } = await postActivity({title: 'New Activity 1', email: 'ulhaqitcom@gmail.com'});
         if(!success) {
             getDataActivity();
         }
@@ -52,7 +61,14 @@ const Activity = () => {
 
     const onDeleteHandler = async (id) => {
         await deleteActivity(id);
+        setOpenModal(false);
+        setModalInformation(true);
         getDataActivity();
+    }
+
+    const modalDelete = (activites) => {
+        setDataActivity(activites)
+        setOpenModal(true);
     }
 
     // console.log(activity);
@@ -66,7 +82,7 @@ const Activity = () => {
             <main>
                 <div className="container mt-14 justify-center mx-auto">
                     <div className="flex justify-between">
-                        <Title data='activity-title' className='text-black text-2xl font-semibold  ml-32 '>
+                        <Title data='activity-title' className='text-black text-3xl font-semibold  ml-32 '>
                             Activity
                         </Title>
                             <ButtonAdd dataCyButton='activity-add-button' postActivity={addActivity} className='mr-32 bg-primary hover:bg-secondary w-44'>
@@ -97,24 +113,29 @@ const Activity = () => {
                                             <Card.Footer>
                                             <div className="flex justify-between">
                                                 <span>
-                                                    <p data-cy='activity-card-date' className="ml-4 mt-4">{showFormattedDate(activites.created_at)}</p>
+                                                    <p data-cy='activity-card-date' className="ml-4 mt-0">{showFormattedDate(activites.created_at)}</p>
                                                 </span>
                                                 <span>
 
-                                                    <ButtonDelete dataCyButton='activity-item-delete-button' id={activites.id} onDelete={onDeleteHandler}>
+                                                    <button data-cy='activity-item-delete-button' id={activites.id} onClick={() => modalDelete(activites)}>
                                                         <img src={ICDelete} alt='hapus-item' className=" h-6 w-6" />
-                                                    </ButtonDelete>
+                                                    </button>
+                                                    
                                                 </span>
                                             </div>
                                             </Card.Footer>
                                         </Card>
                                     ))
+                                    
                                 ) : (
                                 <ActivityEmpty/>
                                 )
                             }
+
                         </div>
                     </div>
+                    {openModal && <Modal closeModal={setOpenModal} dataActivity={dataActivity} deleteActivity={onDeleteHandler} />}
+                    {modalInformation && <ModalInfo setModalInformation={setModalInformation}/>}
                 </article>
             </main>
         </>
