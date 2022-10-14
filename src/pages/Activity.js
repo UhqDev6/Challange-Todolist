@@ -110,12 +110,12 @@ const Activity = () => {
                                             <Card.Footer>
                                             <div className="flex justify-between">
                                                 <span>
-                                                    <p data-cy='activity-card-date' className="ml-4 mt-0">{showFormattedDate(activites.created_at)}</p>
+                                                    <p data-cy='activity-card-date' className="ml-4 mt-4">{showFormattedDate(activites.created_at)}</p>
                                                 </span>
                                                 <span>
 
                                                     <Button data-cy='activity-item-delete-button' id={activites.id} onClick={() => modalDelete(activites)}>
-                                                        <img src={ICDelete} alt='hapus-item' className=" h-6 w-6" />
+                                                        <img src={ICDelete} alt='delete-item' className=" h-6 w-6" />
                                                     </Button>
                                                     
                                                 </span>
