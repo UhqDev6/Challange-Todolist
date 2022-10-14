@@ -10,8 +10,6 @@ import Loading from "../components/atoms/Loading";
 import ActivityEmpty from "../components/atoms/ActivityEmpty";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { showFormattedDate } from "../utils/date";
-import ButtonAdd from "../components/atoms/ButtonAdd";
-import ButtonDelete from "../components/atoms/ButtonDelete";
 import Modal from "../components/molecules/Modal";
 import ModalInfo from "../components/atoms/ModalInfo";
 

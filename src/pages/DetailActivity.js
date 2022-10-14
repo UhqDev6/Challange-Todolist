@@ -1,4 +1,3 @@
-import ButtonAdd from "../components/atoms/ButtonAdd";
 import Title from "../components/atoms/Title";
 import Header from "../components/molecules/Header";
 import ICPlus from '../assets/icons/tabler_plus.png';
