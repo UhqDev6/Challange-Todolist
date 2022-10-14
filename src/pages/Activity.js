@@ -1,4 +1,4 @@
-import Button from "../components/atoms/ButtonAdd";
+import Button from "../components/atoms/Button";
 import Title from "../components/atoms/Title";
 import Header from "../components/molecules/Header";
 import ICPlus from '../assets/icons/tabler_plus.png';
@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { deleteActivity, getActivity, postActivity } from "../utils/api";
 import Loading from "../components/atoms/Loading";
 import ActivityEmpty from "../components/atoms/ActivityEmpty";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { showFormattedDate } from "../utils/date";
 import ButtonAdd from "../components/atoms/ButtonAdd";
 import ButtonDelete from "../components/atoms/ButtonDelete";
@@ -26,8 +26,6 @@ const Activity = () => {
         created_at: "",
     });
     const [modalInformation, setModalInformation] = useState(false);
-    const navigate = useNavigate();
-    const {id} = useParams();
 
 
     const getDataActivity = async () => {
@@ -43,20 +41,12 @@ const Activity = () => {
 
 
     const addActivity = async () => {
-        const { success } = await postActivity({title: 'New Activity 1', email: 'ulhaqitcom@gmail.com'});
+        const { success } = await postActivity({title: 'New Activity', email: 'ulhaqitcom@gmail.com'});
         if(!success) {
             getDataActivity();
         }
 
     }
-
-    // const addActivity = async () => {
-    //     const { success } = await postActivity();
-    //     if(!success) {
-    //         getDataActivity();
-    //     }
-
-    // }
 
 
     const onDeleteHandler = async (id) => {
@@ -71,7 +61,6 @@ const Activity = () => {
         setOpenModal(true);
     }
 
-    // console.log(activity);
 
     return(
         <>
@@ -82,15 +71,23 @@ const Activity = () => {
             <main>
                 <div className="container mt-14 justify-center mx-auto">
                     <div className="flex justify-between">
-                        <Title data='activity-title' className='text-black text-3xl font-semibold  ml-32 '>
+                        <Title data='activity-title' className='text-black text-2xl font-semibold  ml-32 '>
                             Activity
                         </Title>
-                            <ButtonAdd dataCyButton='activity-add-button' postActivity={addActivity} className='mr-32 bg-primary hover:bg-secondary w-44'>
+                            {/* <ButtonAdd dataCyButton='activity-add-button' postActivity={addActivity} className='mr-32 bg-primary hover:bg-secondary w-44'>
                             <span className="flex mx-auto">
                             <img src={ICPlus} alt="tabler plus" />
                             Tambah
                             </span>
-                            </ButtonAdd>
+                            </ButtonAdd> */}
+
+                            <Button data-cy='activity-add-button' onClick={() => addActivity()} className='mr-32 bg-primary hover:bg-secondary w-44'>
+                                <span className="flex mx-auto">
+                                <img src={ICPlus} alt="tabler plus" />
+                                Tambah
+                                </span>
+                            </Button>
+
                             {/* <button type="submit" onClick={() => addActivity()}>
                                 tambah
                             </button> */}
@@ -105,7 +102,9 @@ const Activity = () => {
                                     activity.map((activites) => (
                                         <Card key={activites.id}>
                                             <Card.Title>
-                                                {activites.title}
+                                                <Link to={`/detail/${activites.id}`} >
+                                                    {activites.title}
+                                                </Link>
                                             </Card.Title>
                                             <Card.Body>
                                                 
@@ -117,9 +116,9 @@ const Activity = () => {
                                                 </span>
                                                 <span>
 
-                                                    <button data-cy='activity-item-delete-button' id={activites.id} onClick={() => modalDelete(activites)}>
+                                                    <Button data-cy='activity-item-delete-button' id={activites.id} onClick={() => modalDelete(activites)}>
                                                         <img src={ICDelete} alt='hapus-item' className=" h-6 w-6" />
-                                                    </button>
+                                                    </Button>
                                                     
                                                 </span>
                                             </div>

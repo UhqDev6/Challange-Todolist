@@ -1,11 +1,14 @@
 const BASE_URL = 'https://todo.api.devcode.gethired.id';
 const BASE_EMAIL = 'ulhaqitcom@gmail.com';
-const TITLE = 'New Activity';
 
 const getActivity = async () => {
-    const response = await fetch(`${BASE_URL}/activity-groups?email=${BASE_EMAIL}`);
-    const responseJson = await response.json();
-    return responseJson;
+    try {
+        const response = await fetch(`${BASE_URL}/activity-groups?email=${BASE_EMAIL}`);
+        const responseJson = await response.json();
+        return responseJson;   
+    } catch (error) {
+        throw new Error(error.message);
+    }
     // if(responseJson.status !== 'success') {
     //     return {
     //         error: true,
@@ -19,22 +22,26 @@ const getActivity = async () => {
 }
 
 const postActivity = async ({title, email}) => {
-    const response = await fetch(`${BASE_URL}/activity-groups`, {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(
-            {
-                title,
-                email
-
-            }
-        ),
-    });
-    const responseJson = await response.json();
-    return responseJson;
+    try {
+        const response = await fetch(`${BASE_URL}/activity-groups`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(
+                {
+                    title,
+                    email
+    
+                }
+            ),
+        });
+        const responseJson = await response.json();
+        return responseJson;      
+    } catch (error) {
+        throw new Error(error.message);
+    }
 
 // const postActivity = async (title) => {
 //     const payload =  {
@@ -71,22 +78,76 @@ const postActivity = async ({title, email}) => {
 }
 
 const deleteActivity = async (id) => {
-    const response = await fetch(`${BASE_URL}/activity-groups/${id}`, {
-        method: 'DELETE',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-    });
-
-    const responseJson = await response.json();
-    return responseJson
+    try {
+        const response = await fetch(`${BASE_URL}/activity-groups/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        });
+    
+        const responseJson = await response.json();
+        return responseJson     
+    } catch (error) {
+        throw new Error(error.message);
+    }
 
 }
+
+const getDetailActivity = async (id) => {
+    try {
+        const response = await fetch(`${BASE_URL}/activity-groups/${id}`);
+        const responseJson = await response.json();
+        return responseJson;
+
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
+
+const patchTitleActivity = async (id, title) => {
+    try {
+        const response = await fetch(`${BASE_URL}/activity-groups/${id}`, {
+            
+            method: 'PATCH',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(
+                {
+                    title
+                }
+            ),
+        });
+
+        const responseJson = await response.json();
+        return responseJson;
+
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
+
+const getTodo = async (id) => {
+    try {
+        const response = await fetch(`${BASE_URL}/todo-items?activity_group_id=${id}`);
+        const responseJson = await response.json();
+        return responseJson;
+    
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
+
 
 
 export {
     getActivity,
     postActivity,
     deleteActivity,
+    getDetailActivity,
+    patchTitleActivity,
+    getTodo
 }
