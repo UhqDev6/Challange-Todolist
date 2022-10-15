@@ -142,6 +142,33 @@ const getTodo = async (id) => {
 }
 
 
+const addTodoItems = async (activity_group_id, title, priority) => {
+    try {
+        const response = await fetch(`${BASE_URL}/todo-items`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(
+                {
+                    activity_group_id,
+                    title,
+                    priority
+                }
+            )
+        });
+
+        const responseJson = await response.json();
+        return responseJson;
+
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
+
+
+
 
 export {
     getActivity,
@@ -149,5 +176,6 @@ export {
     deleteActivity,
     getDetailActivity,
     patchTitleActivity,
-    getTodo
+    getTodo,
+    addTodoItems,
 }

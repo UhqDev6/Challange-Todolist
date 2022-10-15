@@ -94,14 +94,13 @@ const Activity = () => {
                                 ) : activity.length > 0 ? (
                                     activity.map((activites) => (
                                         <Card key={activites.id}>
+                                            <Link to={`/detail/${activites.id}`} >
                                             <Card.Title>
-                                                <Link to={`/detail/${activites.id}`} >
                                                     {activites.title}
-                                                </Link>
                                             </Card.Title>
                                             <Card.Body>
-                                                
                                             </Card.Body>
+                                            </Link>
                                             <Card.Footer>
                                             <div className="flex justify-between">
                                                 <span>

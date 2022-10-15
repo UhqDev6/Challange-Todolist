@@ -10,15 +10,15 @@ import Loading from "../components/atoms/Loading";
 import TodoEmpty from "../components/atoms/TodoEmpty";
 import useInput from "../hooks/useInput";
 import Button from "../components/atoms/Button";
+import ModalAdd from "../components/molecules/ModalAdd";
 const DetailActivity = () => {
 
     const [detailActivity, setDetailActivity] = useState('');
     const [todo, setTodo] = useState([]);
     const {id} = useParams();
     const [isLoading, setIsLoading] = useState(true);
-    console.log(detailActivity);
-
-
+    const [openModalAdd , setOpenModalAdd] = useState(false);
+    
     useEffect(() => {
         const getDetailDataActivity = async () => {
             const data = await getDetailActivity(id);
@@ -43,6 +43,10 @@ const DetailActivity = () => {
         }
         getTodoItem();
     },[id]);
+
+    const modalAdd = () => {
+        setOpenModalAdd(true);
+    }
 
     return(
         <>
@@ -82,7 +86,7 @@ const DetailActivity = () => {
                                 </div>
                                 </form>
 
-                                <Button data-cy='todo-add-button' onClick={()=> alert('hai')} className='mr-32 bg-primary hover:bg-secondary w-44'>
+                                <Button data-cy='todo-add-button' onClick={()=> modalAdd()} className='mr-32 bg-primary hover:bg-secondary w-44'>
                                     <span className="flex mx-auto">
                                     <img src={ICPlus} alt="tabler plus" />
                                     Tambah
@@ -108,6 +112,7 @@ const DetailActivity = () => {
 
                         </div>
                     </div>
+                {openModalAdd && <ModalAdd closeModalAdd={setOpenModalAdd} />}
                 </article>
                 </>
             </main>
