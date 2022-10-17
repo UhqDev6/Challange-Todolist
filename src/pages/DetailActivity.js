@@ -4,20 +4,44 @@ import ICPlus from '../assets/icons/tabler_plus.png';
 import ICBack from '../assets/icons/todo-back-button.png';
 import ICTodoTitleEdit from '../assets/icons/todo-item-edit-button.png';
 import { useCallback, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import { getDetailActivity, getTodo, patchTitleActivity } from "../utils/api";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { addTodoItems, deleteTodo, getDetailActivity, getTodo, getTodoItems, patchChacked, patchTitleActivity } from "../utils/api";
 import Loading from "../components/atoms/Loading";
 import TodoEmpty from "../components/atoms/TodoEmpty";
 import useInput from "../hooks/useInput";
 import Button from "../components/atoms/Button";
 import ModalAdd from "../components/molecules/ModalAdd";
+import ICPVeryHigh from '../assets/icons/Ellipse-very-high.png'
+import ICPHigh from '../assets/icons/Ellipse-high.png'
+import ICPMedium from '../assets/icons/Ellipse-medium.png'
+import ICPLow from '../assets/icons/Ellipse-low.png'
+import ICPVeryLow from '../assets/icons/Ellipse-very-low.png'
+import ICDelete from '../assets/icons/activity-item-delete-button.png';
+import Modal from "../components/molecules/Modal";
+import ModalInfo from "../components/atoms/ModalInfo";
+// import ICCheck from '../../assets/icons/tabler_check.png'
 const DetailActivity = () => {
 
     const [detailActivity, setDetailActivity] = useState('');
     const [todo, setTodo] = useState([]);
     const {id} = useParams();
+    const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true);
     const [openModalAdd , setOpenModalAdd] = useState(false);
+
+    //Save Data Todo Item
+    const onAddTodoHandler = async (inputListItem, valueOptionSelected) => {
+        const {success} = await addTodoItems(id, inputListItem, valueOptionSelected)
+        console.log({
+            inputListItem,
+            valueOptionSelected
+        })
+        if(!success) {
+            setOpenModalAdd(false)
+            getTodoItem();
+        }
+
+    }
     
     useEffect(() => {
         const getDetailDataActivity = async () => {
@@ -35,18 +59,129 @@ const DetailActivity = () => {
         patchTitleActivity(id, detailActivity);
     }
 
+    const getTodoItem = async () => {
+        const {data} = await getTodo(id);
+        setTodo(data);
+        setIsLoading(false);
+    }
     useEffect(() => {
-        const getTodoItem = async () => {
-            const {data} = await getTodo(id);
-            setTodo(data);
-            setIsLoading(false);
-        }
         getTodoItem();
     },[id]);
 
     const modalAdd = () => {
         setOpenModalAdd(true);
     }
+
+
+
+    const optionSelected = [
+        {
+            value: 'very-high',
+            label: 'Very High',
+            icon: ICPVeryHigh,
+            dataCy: 'modal-add-priority-very-high',
+        },
+        {
+            value: 'high',
+            label: 'High',
+            icon: ICPHigh,
+            dataCy: 'modal-add-priority-high',
+        },
+        {
+            value: 'normal',
+            label: 'Medium',
+            icon: ICPMedium,
+            dataCy: 'modal-add-priority-medium',
+        },
+        {
+            value:  'low',
+            label: 'Low',
+            icon: ICPLow,
+            dataCy: 'modal-add-priority-low',
+        },
+        {
+            value: 'very-low',
+            label: 'Very Low',
+            icon: ICPVeryLow,
+            dataCy: 'modal-add-priority-very-low',
+        }
+    ];
+
+    const Priority = (item) => {
+        if(item === 'very-low'){
+            return ICPVeryLow;
+        }else if(item === 'very-high'){
+            return ICPVeryHigh;
+        }else if(item === 'high'){
+            return ICPHigh;
+        }else if(item === 'normal'){
+            return ICPMedium;
+        }else if(item === 'low') {
+            return ICPLow;
+        }
+        return ICPVeryHigh;
+    }
+
+    const [openOptionSelected, setOpenOptionSelected] = useState(false);
+    const [indicatorSelected, setIndicatorSelected] = useState('');
+    const [iconOptionSelected, setIconOptionSelected] = useState(
+        optionSelected[0].icon
+    );
+    const [labelOptionSelected, setLabelOptionSelected] = useState(
+        optionSelected[0].label
+    );
+    const [valueOptionSelected, setValueOptionSelected] = useState(
+        optionSelected[0].value
+    );
+
+    //handle sebuah option selected
+    const HandleOptionSelected = (item) => {
+        setIconOptionSelected(item.icon);
+        setLabelOptionSelected(item.label);
+        setValueOptionSelected(item.value);
+        setIndicatorSelected(item.label);
+    }
+
+    //handle chacked input
+    const handleChackedInput = async (item) => {
+        const chackedInput = {
+            title: item.title,
+            activity_group_id: item.activity_group_id,
+            is_active: !item.is_active,
+            priority: item.priority
+        }
+        const {success} =await patchChacked(item.id,chackedInput, id);
+        if(!success) {
+            getTodoItem();
+        }
+
+    }
+
+    //handle modal delete 
+    const [openModal, setOpenModal] = useState(false);
+    const [dataTodo, setDataTodo] = useState(
+        {        
+            id: '',
+            title: '',
+            created_at: '',
+        }
+    );
+    const [modalInformation, setModalInformation] = useState(false);
+
+    const modalDelete = (todoItems) => {
+        setDataTodo(todoItems);
+        setOpenModal(true);
+    }
+
+    const onDeleteTodoHandler = async (id) => {
+        const {success} = await deleteTodo(id);
+        if(!success) {
+            setOpenModal(false);
+            setModalInformation(true);
+            getTodoItem();
+        }
+    }
+
 
     return(
         <>
@@ -104,7 +239,31 @@ const DetailActivity = () => {
                             { isLoading ? (
                                 <Loading/>
                                 ) : todo.length > 0 ? (
-                                    <p>data ada lho </p>
+                                    todo.map((todoItems) => (
+                                        <div  key={todoItems.value} className="shadow-slate-200 shadow-md rounded-md overflow-hidden bg-white w-[86%] ml-20 mt-8">
+                                            <div data-cy='todo-item' className="p-8 flex gap-8">
+                                                <input
+                                                    data-cy='todo-item-checkbox'
+                                                    type="checkbox" 
+                                                    className="w-6 h-6" 
+                                                    checked={!todoItems.is_active} 
+                                                    value={todoItems.title} 
+                                                    name={todoItems.title}
+                                                    onChange={() => handleChackedInput(todoItems)} 
+                                
+                                                />
+                                                <img data-cy='todo-item-priority-indicator' src={Priority(todoItems.priority)} alt='icon' className="w-5 h-5 mt-[2px]" />
+                                                {!todoItems.is_active ? (
+                                                    <label data-cy='todo-item-title' className="line-through text-slate-400">{todoItems.title}</label>
+                                                ) : (
+                                                    <label data-cy='todo-item-title'>{todoItems.title}</label>
+                                                )}
+                                                <img data-cy='todo-item-edit-button' src={ICTodoTitleEdit} alt='todo title edit' className="w-5 h-5"/>
+                                                <img data-cy='todo-item-delete-button' src={ICDelete} alt='delete-item' className="h-6 w-6 ml-[65%] absolute cursor-pointer" id={todoItems.id} onClick={() => modalDelete(todoItems)} />
+                                            </div>
+                                        </div>
+                                        
+                                    ))
                                 ) : (
                                 <TodoEmpty/>
                                 )
@@ -112,7 +271,25 @@ const DetailActivity = () => {
 
                         </div>
                     </div>
-                {openModalAdd && <ModalAdd closeModalAdd={setOpenModalAdd} />}
+                {openModalAdd && 
+                    <ModalAdd 
+                        closeModalAdd={setOpenModalAdd} 
+                        openOptionSelected={openOptionSelected} 
+                        setOpenOptionSelected={setOpenOptionSelected}
+                        iconOptionSelected={iconOptionSelected}
+                        labelOptionSelected={labelOptionSelected}
+                        valueOptionSelected={valueOptionSelected}
+                        setIconOptionSelected={setIconOptionSelected}
+                        setLabelOptionSelected={setLabelOptionSelected}
+                        setValueOptionSelected={setValueOptionSelected}
+                        optionSelected={optionSelected}
+                        indicatorSelected={indicatorSelected}
+                        HandleOptionSelected={HandleOptionSelected}
+                        addTodo={onAddTodoHandler}
+                    />
+                }
+                {openModal && <Modal closeModalTodo={setOpenModal} dataTodo={dataTodo} deleteTodo={onDeleteTodoHandler} />}
+                {modalInformation && <ModalInfo setModalInformation={setModalInformation} />}
                 </article>
                 </>
             </main>

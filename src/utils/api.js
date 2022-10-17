@@ -134,6 +134,7 @@ const getTodo = async (id) => {
     try {
         const response = await fetch(`${BASE_URL}/todo-items?activity_group_id=${id}`);
         const responseJson = await response.json();
+        console.log(responseJson);
         return responseJson;
     
     } catch (error) {
@@ -160,12 +161,66 @@ const addTodoItems = async (activity_group_id, title, priority) => {
         });
 
         const responseJson = await response.json();
+        console.log(responseJson);
         return responseJson;
 
     } catch (error) {
         throw new Error(error.message);
     }
 }
+
+const patchChacked = async (id, chackedInput) => {
+    try {
+        const response = await fetch(`${BASE_URL}/todo-items/${id}`, {
+            method: 'PATCH',
+            headers: { 
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(
+                {
+                    activity_group_id : chackedInput.activity_group_id,
+                    is_active : chackedInput.is_active,
+                    priority: chackedInput.priority,
+                    title: chackedInput.title,
+                }
+            )
+        });
+        const responseJson = await response.json();
+        return responseJson;
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
+
+const deleteTodo = async (id) => {
+    try {
+        const response = await fetch(`${BASE_URL}/todo-items/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        });
+        const responseJson = await response.json();
+        return responseJson;
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
+
+
+// const getTodoItems = async (id) => {
+//     try {
+//         const response = await fetch(`${BASE_URL}/todo-items?activity_group_id=${id}`); 
+//         const  responseJson = await response.json();
+//         console.log(responseJson);
+//         return responseJson;
+//     } catch (error) {
+//         throw new Error(error.message);
+//     }
+
+// }
 
 
 
@@ -178,4 +233,6 @@ export {
     patchTitleActivity,
     getTodo,
     addTodoItems,
+    patchChacked,
+    deleteTodo
 }
