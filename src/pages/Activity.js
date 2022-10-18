@@ -69,7 +69,7 @@ const Activity = () => {
             <main>
                 <div className="container mt-14 justify-center mx-auto">
                     <div className="flex justify-between">
-                        <Title data='activity-title' className='text-black text-2xl font-semibold  ml-32 '>
+                        <Title data='activity-title' className='text-black text-2xl font-semibold  ml-32 mt-4 '>
                             Activity
                         </Title>
                             {/* <ButtonAdd dataCyButton='activity-add-button' postActivity={addActivity} className='mr-32 bg-primary hover:bg-secondary w-44'>
@@ -104,7 +104,7 @@ const Activity = () => {
                                             <Card.Footer>
                                             <div className="flex justify-between">
                                                 <span>
-                                                    <p data-cy='activity-card-date' className="ml-4 mt-4">{showFormattedDate(activites.created_at)}</p>
+                                                    <p data-cy='activity-item-date' className="ml-4 mt-4">{showFormattedDate(activites.created_at)}</p>
                                                 </span>
                                                 <span>
 
@@ -119,7 +119,7 @@ const Activity = () => {
                                     ))
                                     
                                 ) : (
-                                <ActivityEmpty/>
+                                <ActivityEmpty addActivity={addActivity} />
                                 )
                             }
 

@@ -3,10 +3,12 @@ import ICClose from '../../assets/icons/modal-add-close-button.png'
 import Label from "../atoms/Label";
 import useInput from "../../hooks/useInput";
 import SelectOption from "../atoms/SelectOption";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 
-const ModalAdd = (
+const ModalEdit = (
     {
-        closeModalAdd,
+        closeModalEdit,
         openOptionSelected,
         setOpenOptionSelected,
         iconOptionSelected,
@@ -18,33 +20,56 @@ const ModalAdd = (
         optionSelected,
         indicatorSelected,
         HandleOptionSelected,
-        addTodo,
+        editTodo,
+        editTodoNameItem,
+        handleEditTodoNameItem
     }
     ) => {
+
     const [inputListItem, handleInputListItem] = useInput('');
-    const onSubmitNoteHandler = (event) => {
+    // const [editTodoItems, setEditTodoItems] = useState('');
+    const [isLoading, setIsLoading] = useState(true);
+
+    const onSubmitEditNoteHandler = (event) => {
         event.preventDefault();
-        addTodo(inputListItem, valueOptionSelected)
+        editTodo();
     }
+
+    console.log(editTodoNameItem);
+    console.log(valueOptionSelected);
+    // useEffect(() => {
+    //     const getEditTodoItems = async () => {
+    //         const data = await dataEdit;
+    //         setEditTodoItems(data.title);
+    //         setIsLoading(false);
+    //     }
+    //     getEditTodoItems();
+    // },[])
+
+    // const handleEditTodo = (event) => {
+    //     setEditTodoItems(event.target.value);
+    // }
+
+
     return(
         <>
         <div className="fixed md:inset-0 bg-gray-600 bg-opacity-75">
             <div  data-cy='modal-add' className="w-2/4 md:h-auto mx-auto mt-24">
                 <div className=" bg-white rounded-2xl shadow dark:bg-gray-700 z-0">
                     <div className='p-6 border-b justify-between'>
-                        <h3 data-cy='modal-add-title' className="text-black font-semibold text-xl">Tambah List Item</h3>
-                        <img data-cy='modal-add-close-button' src={ICClose} alt='modal add close button' onClick={() => closeModalAdd(false)} className='mx-auto h-7 w-7 ml-[95%] -mt-[30px] cursor-pointer'/>
+                        <h3 data-cy='modal-add-title' className="text-black font-semibold text-xl">Edit List Item</h3>
+                        <img data-cy='modal-add-close-button' src={ICClose} alt='modal add close button' onClick={() => closeModalEdit(false)} className='mx-auto h-7 w-7 ml-[95%] -mt-[30px] cursor-pointer'/>
                     </div>
                     <div className='p-2 w-full'>
-                        <form className="px-8 pt-6 pb-8 mb-4" onSubmit={onSubmitNoteHandler} >
+                        <form className="px-8 pt-6 pb-8 mb-4" onSubmit={onSubmitEditNoteHandler} >
                             <div className="mt-6">
                                 <Label data-cy='modal-add-name-title' className='block text-gray-700 text-sm font-semibold mr-[80%]' >NAMA LIST ITEM</Label>
                                 <input 
                                     data-cy='modal-add-name-input'
                                     placeholder="Tambahkan nama list item" 
-                                    value={inputListItem}
-                                    onChange={handleInputListItem}
-                                    className="appearance-none border mt-4 rounded w-full py-4 px-3 text-gray-400 focus:outline-none focus:shadow-outline"
+                                    value={editTodoNameItem}
+                                    onChange={handleEditTodoNameItem}
+                                    className="appearance-none border mt-4 rounded w-full py-4 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
                                 />
                             </div>
                             <SelectOption 
@@ -61,7 +86,7 @@ const ModalAdd = (
                                 HandleOptionSelected={HandleOptionSelected}
                             />
                             <div className=" flex p-6 border-t mt-40">
-                                {inputListItem.length < 1 ? (
+                                {editTodoNameItem.length < 1 ? (
                                     <Button data-cy='modal-add-save-button' disabled className='text-white ml-[85%] w-32 mr-20 bg-primary cursor-not-allowed disabled:opacity-25 focus:outline-none font-medium rounded-full text-sm inline-flex px-5 py-2.5 justify-center'>
                                         Simpan
                                     </Button>
@@ -85,4 +110,4 @@ const ModalAdd = (
 
 
 
-export default ModalAdd;
+export default ModalEdit;

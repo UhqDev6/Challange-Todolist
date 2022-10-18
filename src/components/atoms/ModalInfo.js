@@ -6,8 +6,8 @@ const ModalInfo = ({setModalInformation}) => {
                 <div data-cy='modal-information' className="w-2/6 md:h-auto mx-auto mt-80">
                     <div className=" bg-white rounded-2xl shadow dark:bg-gray-700">
                         <div className=" flex p-6 justify-between">
-                            <img src={ICInfo} alt='modal information' className='h-6 w-6' />
-                            <p className='mr-48'>Activity berhasil dihapus</p>
+                            <img data-cy='modal-information-icon' src={ICInfo} alt='modal information icon' className='h-6 w-6' />
+                            <p data-cy='modal-information-title' className='mr-48'>Activity berhasil dihapus</p>
                         </div>
                     </div>
                 </div>

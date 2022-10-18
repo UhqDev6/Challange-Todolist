@@ -193,6 +193,32 @@ const patchChacked = async (id, chackedInput) => {
     }
 }
 
+const updateTodo = async (id, data) => {
+    try {
+        const response = await fetch(`${BASE_URL}/todo-items/${id}`,{
+            data,
+            method: 'PATCH',
+            headers: { 
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(
+                {
+                    activity_group_id : data.activity_group_id,
+                    is_active : data.is_active,
+                    priority: data.priority,
+                    title: data.title,
+                }
+            )
+        });
+        const responseJson = await response.json();
+        console.log(responseJson);
+        return responseJson;
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
+
 const deleteTodo = async (id) => {
     try {
         const response = await fetch(`${BASE_URL}/todo-items/${id}`, {
@@ -234,5 +260,6 @@ export {
     getTodo,
     addTodoItems,
     patchChacked,
-    deleteTodo
+    deleteTodo,
+    updateTodo
 }

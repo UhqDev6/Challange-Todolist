@@ -5,7 +5,7 @@ import ICBack from '../assets/icons/todo-back-button.png';
 import ICTodoTitleEdit from '../assets/icons/todo-item-edit-button.png';
 import { useCallback, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { addTodoItems, deleteTodo, getDetailActivity, getTodo, getTodoItems, patchChacked, patchTitleActivity } from "../utils/api";
+import { addTodoItems, deleteTodo, getDetailActivity, getTodo, getTodoItems, patchChacked, patchTitleActivity, updateTodo } from "../utils/api";
 import Loading from "../components/atoms/Loading";
 import TodoEmpty from "../components/atoms/TodoEmpty";
 import useInput from "../hooks/useInput";
@@ -19,6 +19,8 @@ import ICPVeryLow from '../assets/icons/Ellipse-very-low.png'
 import ICDelete from '../assets/icons/activity-item-delete-button.png';
 import Modal from "../components/molecules/Modal";
 import ModalInfo from "../components/atoms/ModalInfo";
+import ModalEdit from "../components/molecules/ModalEdit";
+import ICTodoSort from '../assets/icons/todo-sort-button.png';
 // import ICCheck from '../../assets/icons/tabler_check.png'
 const DetailActivity = () => {
 
@@ -182,6 +184,40 @@ const DetailActivity = () => {
         }
     }
 
+    //handle edit
+    const [dataEdit, setDataEdit] = useState({});
+    const [editTodoNameItem, setEditTodoNameItem] = useState('');
+    const [openModalEdit , setOpenModalEdit] = useState(false);
+
+    const modalEdit = (todoItems) => {
+        setEditTodoNameItem(todoItems.title);
+        setDataEdit(todoItems);
+        const optionSelectedTodo = optionSelected.find((data) => data.value === todoItems.priority);
+        setIconOptionSelected(optionSelectedTodo.icon);
+        setLabelOptionSelected(optionSelectedTodo.label);
+        setValueOptionSelected(optionSelectedTodo.value);
+        setIndicatorSelected(optionSelectedTodo.label);
+        setOpenModalEdit(true);
+    }
+
+    const handleEditTodoNameItem = (event) => {
+        setEditTodoNameItem(event.target.value);
+    }
+  
+    const onEditTodoHandler = async () => {
+        const data = {
+            ...dataEdit,
+            title: editTodoNameItem,
+            priority: valueOptionSelected
+        }
+        const {success} = await updateTodo( dataEdit.id, data)
+        if(!success) {
+            setOpenModalEdit(false)
+            getTodoItem();
+        }
+
+    }
+
 
     return(
         <>
@@ -213,7 +249,7 @@ const DetailActivity = () => {
                                         onChange={handleValueChange}
                                         className="text-black text-2xl font-semibold mr-[520px] mt-4 outline-0 hover:border-b-2 border-gray-300"
                                     />
-                                    <span className="absolute ml-52 mt-[1px]">
+                                    <span className="absolute ml-[20%] mt-[1px]">
                                     <Button data-cy='todo-title-edit-button'>
                                         <img src={ICTodoTitleEdit} alt='todo title edit' className="w-7 h-7"/>
                                     </Button>
@@ -221,15 +257,14 @@ const DetailActivity = () => {
                                 </div>
                                 </form>
 
+                                <img src={ICTodoSort} alt="sort data"  className="w-16 h-16 ml-[62%]  absolute" onClick={() => alert('hello')}/>
+
                                 <Button data-cy='todo-add-button' onClick={()=> modalAdd()} className='mr-32 bg-primary hover:bg-secondary w-44'>
                                     <span className="flex mx-auto">
-                                    <img src={ICPlus} alt="tabler plus" />
+                                    <img src={ICPlus} alt="tabler plus"/>
                                     Tambah
                                     </span>
                                 </Button>
-                                {/* <button type="submit" onClick={() => addActivity()}>
-                                    tambah
-                                </button> */}
                         </div>
                     </div>
                     )}
@@ -239,13 +274,13 @@ const DetailActivity = () => {
                             { isLoading ? (
                                 <Loading/>
                                 ) : todo.length > 0 ? (
-                                    todo.map((todoItems) => (
-                                        <div  key={todoItems.value} className="shadow-slate-200 shadow-md rounded-md overflow-hidden bg-white w-[86%] ml-20 mt-8">
+                                    todo.map((todoItems,index) => (
+                                        <div  key={index} className="shadow-slate-200 shadow-md rounded-md overflow-hidden bg-white w-[86%] ml-20 mt-8">
                                             <div data-cy='todo-item' className="p-8 flex gap-8">
                                                 <input
                                                     data-cy='todo-item-checkbox'
                                                     type="checkbox" 
-                                                    className="w-6 h-6" 
+                                                    className="w-6 h-6 cursor-pointer" 
                                                     checked={!todoItems.is_active} 
                                                     value={todoItems.title} 
                                                     name={todoItems.title}
@@ -258,14 +293,14 @@ const DetailActivity = () => {
                                                 ) : (
                                                     <label data-cy='todo-item-title'>{todoItems.title}</label>
                                                 )}
-                                                <img data-cy='todo-item-edit-button' src={ICTodoTitleEdit} alt='todo title edit' className="w-5 h-5"/>
+                                                <img data-cy='todo-item-edit-button' src={ICTodoTitleEdit} alt='todo title edit' className="w-5 h-5 cursor-pointer" onClick={() => modalEdit(todoItems)}/>
                                                 <img data-cy='todo-item-delete-button' src={ICDelete} alt='delete-item' className="h-6 w-6 ml-[65%] absolute cursor-pointer" id={todoItems.id} onClick={() => modalDelete(todoItems)} />
                                             </div>
                                         </div>
                                         
                                     ))
                                 ) : (
-                                <TodoEmpty/>
+                                <TodoEmpty modalAdd={modalAdd} />
                                 )
                             }
 
@@ -286,6 +321,26 @@ const DetailActivity = () => {
                         indicatorSelected={indicatorSelected}
                         HandleOptionSelected={HandleOptionSelected}
                         addTodo={onAddTodoHandler}
+                    />
+                }
+                {openModalEdit && 
+                    <ModalEdit 
+                        closeModalEdit={setOpenModalEdit} 
+                        openOptionSelected={openOptionSelected} 
+                        setOpenOptionSelected={setOpenOptionSelected}
+                        iconOptionSelected={iconOptionSelected}
+                        labelOptionSelected={labelOptionSelected}
+                        valueOptionSelected={valueOptionSelected}
+                        setIconOptionSelected={setIconOptionSelected}
+                        setLabelOptionSelected={setLabelOptionSelected}
+                        setValueOptionSelected={setValueOptionSelected}
+                        optionSelected={optionSelected}
+                        indicatorSelected={indicatorSelected}
+                        HandleOptionSelected={HandleOptionSelected}
+                        editTodo={onEditTodoHandler}
+                        dataEdit={dataEdit}
+                        editTodoNameItem={editTodoNameItem}
+                        handleEditTodoNameItem={handleEditTodoNameItem}
                     />
                 }
                 {openModal && <Modal closeModalTodo={setOpenModal} dataTodo={dataTodo} deleteTodo={onDeleteTodoHandler} />}

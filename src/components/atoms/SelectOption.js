@@ -17,20 +17,21 @@ const SelectOption = (
         HandleOptionSelected
     }
     ) => {
-        console.log(valueOptionSelected)
+        // console.log(valueOptionSelected)
+
     return(
         <>
             <div className="mt-6 z-10 fixed">
                 <Label data-cy='modal-add-priority-title' className='block text-gray-700 text-sm font-semibold mr-[80%]' >PRIORITY</Label>
                 { openOptionSelected ? (
-                    <div data-cy='modal-add-priority-dropdown' onClick={() => setOpenOptionSelected(!openOptionSelected)} value={valueOptionSelected} className="appearance-none border mt-4 rounded w-[80%] py-4 px-3 text-gray-600 bg-slate-100 focus:outline-none focus:shadow-outline">
+                    <div data-cy='modal-add-priority-dropdown' onClick={() => setOpenOptionSelected(!openOptionSelected)} value={valueOptionSelected}  className="appearance-none border mt-4 rounded w-[80%] py-4 px-3 text-gray-600 bg-slate-100 focus:outline-none focus:shadow-outline cursor-pointer">
                     <div className="flex">
                         <p className="mt-[2px]">Pilih Priority</p>
                         <img src={ICArrowTop} alt="Arrow Top" className="w-7 h-7 ml-[58%]" />
                     </div>
                     </div>
                 ) : (
-                    <div data-cy='modal-add-priority-dropdown' onClick={() => setOpenOptionSelected(!openOptionSelected)} value={valueOptionSelected}  className="appearance-none border mt-4 rounded w-[80%] py-4 px-3 text-gray-600 focus:outline-none focus:shadow-outline">
+                    <div data-cy='modal-add-priority-dropdown' onClick={() => setOpenOptionSelected(!openOptionSelected)} value={valueOptionSelected}  className="appearance-none border mt-4 rounded w-[80%] py-4 px-3 text-gray-600 focus:outline-none focus:shadow-outline cursor-pointer">
                     <div data-cy='modal-add-priority-item' className="flex w-96">
                         <img src={iconOptionSelected} alt="Arrow Top" className="w-4 h-4 mt-[6px]" />
                         <p className="ml-4 mt-[2px]">{labelOptionSelected}</p>

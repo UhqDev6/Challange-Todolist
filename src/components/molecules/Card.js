@@ -31,7 +31,7 @@ const Body = ({children}) => {
 const Footer = ({children}) => {
     return(
         <>
-            <div data-cy='activity-card-footer' className="bg-white p-4 text-slate-500">
+            <div className="bg-white p-4 text-slate-500">
                 {children}
             </div>
         </>
