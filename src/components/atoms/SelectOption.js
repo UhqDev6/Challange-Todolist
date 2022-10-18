@@ -45,8 +45,8 @@ const SelectOption = (
                     <div>
                     {optionSelected.map((item) => (
                     <div data-cy='modal-add-priority-dropdown' key={item.value}>
-                    <div data-cy={item.dataCy} className={`${item.value === 'very-low' && 'rounded-b-xl'} z-20 border-b-[1px] w-[80%] py-4 px-3 text-gray-600 hover:bg-slate-100 bg-white shadow-sm  cursor-pointer`}>
-                            <div data-cy='modal-add-priority-item' className="flex w-96" value={item.value} onClick={() => (HandleOptionSelected(item))}>
+                    <div data-cy={item.dataCy} className={`${item.value === 'very-low' && 'rounded-b-xl'} border-b-[1px] w-[80%] py-4 px-3 text-gray-600 hover:bg-slate-100 bg-white shadow-sm  cursor-pointer`}>
+                            <div data-cy='modal-add-priority-item' className="flex w-96" value={item.value} onClick={() => HandleOptionSelected(item)}>
                                 <img src={item.icon} alt="Arrow Top" className="w-3 h-3 mt-[6px]" />
                                 <p className="ml-4">{item.label}</p>
                                 {indicatorSelected === item.label && (
