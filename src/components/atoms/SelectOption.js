@@ -9,15 +9,11 @@ const SelectOption = (
         iconOptionSelected,
         labelOptionSelected,
         valueOptionSelected,
-        setIconOptionSelected,
-        setLabelOptionSelected,
-        setValueOptionSelected,
         optionSelected,
         indicatorSelected,
         HandleOptionSelected
     }
     ) => {
-        // console.log(valueOptionSelected)
 
     return(
         <>
@@ -32,7 +28,7 @@ const SelectOption = (
                     </div>
                 ) : (
                     <div data-cy='modal-add-priority-dropdown' onClick={() => setOpenOptionSelected(!openOptionSelected)} value={valueOptionSelected}  className="appearance-none border mt-4 rounded w-[80%] py-4 px-3 text-gray-600 focus:outline-none focus:shadow-outline cursor-pointer">
-                    <div data-cy='modal-add-priority-item' className="flex w-96">
+                    <div  data-cy='modal-add-priority-item' className="flex w-96">
                         <img src={iconOptionSelected} alt="Arrow Top" className="w-4 h-4 mt-[6px]" />
                         <p className="ml-4 mt-[2px]">{labelOptionSelected}</p>
                         {openOptionSelected ? (
@@ -50,7 +46,7 @@ const SelectOption = (
                     {optionSelected.map((item) => (
                     <div data-cy='modal-add-priority-dropdown' key={item.value}>
                     <div data-cy={item.dataCy} className={`${item.value === 'very-low' && 'rounded-b-xl'} z-20 border-b-[1px] w-[80%] py-4 px-3 text-gray-600 hover:bg-slate-100 bg-white shadow-sm  cursor-pointer`}>
-                            <div className="flex w-96" value={item.value} onClick={() => (HandleOptionSelected(item) , setOpenOptionSelected(!openOptionSelected)) }>
+                            <div data-cy='modal-add-priority-item' className="flex w-96" value={item.value} onClick={() => (HandleOptionSelected(item))}>
                                 <img src={item.icon} alt="Arrow Top" className="w-3 h-3 mt-[6px]" />
                                 <p className="ml-4">{item.label}</p>
                                 {indicatorSelected === item.label && (

@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { deleteActivity, getActivity, postActivity } from "../utils/api";
 import Loading from "../components/atoms/Loading";
 import ActivityEmpty from "../components/atoms/ActivityEmpty";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { showFormattedDate } from "../utils/date";
 import Modal from "../components/molecules/Modal";
 import ModalInfo from "../components/atoms/ModalInfo";
@@ -72,12 +72,6 @@ const Activity = () => {
                         <Title data='activity-title' className='text-black text-2xl font-semibold  ml-32 mt-4 '>
                             Activity
                         </Title>
-                            {/* <ButtonAdd dataCyButton='activity-add-button' postActivity={addActivity} className='mr-32 bg-primary hover:bg-secondary w-44'>
-                            <span className="flex mx-auto">
-                            <img src={ICPlus} alt="tabler plus" />
-                            Tambah
-                            </span>
-                            </ButtonAdd> */}
                             <Button data-cy='activity-add-button' onClick={() => addActivity()} className='mr-32 bg-primary hover:bg-secondary w-44'>
                                 <span className="flex mx-auto">
                                 <img src={ICPlus} alt="tabler plus" />

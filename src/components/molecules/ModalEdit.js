@@ -1,10 +1,8 @@
 import Button from "../atoms/Button";
 import ICClose from '../../assets/icons/modal-add-close-button.png'
 import Label from "../atoms/Label";
-import useInput from "../../hooks/useInput";
 import SelectOption from "../atoms/SelectOption";
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+
 
 const ModalEdit = (
     {
@@ -26,9 +24,6 @@ const ModalEdit = (
     }
     ) => {
 
-    const [inputListItem, handleInputListItem] = useInput('');
-    // const [editTodoItems, setEditTodoItems] = useState('');
-    const [isLoading, setIsLoading] = useState(true);
 
     const onSubmitEditNoteHandler = (event) => {
         event.preventDefault();
@@ -37,19 +32,6 @@ const ModalEdit = (
 
     console.log(editTodoNameItem);
     console.log(valueOptionSelected);
-    // useEffect(() => {
-    //     const getEditTodoItems = async () => {
-    //         const data = await dataEdit;
-    //         setEditTodoItems(data.title);
-    //         setIsLoading(false);
-    //     }
-    //     getEditTodoItems();
-    // },[])
-
-    // const handleEditTodo = (event) => {
-    //     setEditTodoItems(event.target.value);
-    // }
-
 
     return(
         <>
@@ -85,7 +67,7 @@ const ModalEdit = (
                                 indicatorSelected={indicatorSelected}
                                 HandleOptionSelected={HandleOptionSelected}
                             />
-                            <div className=" flex p-6 border-t mt-40">
+                            <div className="flex p-6 border-t mt-40">
                                 {editTodoNameItem.length < 1 ? (
                                     <Button data-cy='modal-add-save-button' disabled className='text-white ml-[85%] w-32 mr-20 bg-primary cursor-not-allowed disabled:opacity-25 focus:outline-none font-medium rounded-full text-sm inline-flex px-5 py-2.5 justify-center'>
                                         Simpan

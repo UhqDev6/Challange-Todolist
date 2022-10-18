@@ -1,14 +1,13 @@
-import Title from "../components/atoms/Title";
+
 import Header from "../components/molecules/Header";
 import ICPlus from '../assets/icons/tabler_plus.png';
 import ICBack from '../assets/icons/todo-back-button.png';
 import ICTodoTitleEdit from '../assets/icons/todo-item-edit-button.png';
-import { useCallback, useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { addTodoItems, deleteTodo, getDetailActivity, getTodo, getTodoItems, patchChacked, patchTitleActivity, updateTodo } from "../utils/api";
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { addTodoItems, deleteTodo, getDetailActivity, getTodo, patchChacked, patchTitleActivity, updateTodo } from "../utils/api";
 import Loading from "../components/atoms/Loading";
 import TodoEmpty from "../components/atoms/TodoEmpty";
-import useInput from "../hooks/useInput";
 import Button from "../components/atoms/Button";
 import ModalAdd from "../components/molecules/ModalAdd";
 import ICPVeryHigh from '../assets/icons/Ellipse-very-high.png'
@@ -27,13 +26,12 @@ import ICSortAsc from '../assets/icons/sort-az.png';
 import ICSortDesc from '../assets/icons/sort-za.png';
 import ICSortUnfinish from '../assets/icons/sort-unfinished.png'
 import SortDropdown from "../components/atoms/SortDropdown";
-// import ICCheck from '../../assets/icons/tabler_check.png'
+
 const DetailActivity = () => {
 
     const [detailActivity, setDetailActivity] = useState('');
     const [todo, setTodo] = useState([]);
     const {id} = useParams();
-    const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true);
     const [openModalAdd , setOpenModalAdd] = useState(false);
 
@@ -146,6 +144,7 @@ const DetailActivity = () => {
 
     //handle sebuah option selected
     const HandleOptionSelected = (item) => {
+        setOpenOptionSelected(!openOptionSelected)
         setIconOptionSelected(item.icon);
         setLabelOptionSelected(item.label);
         setValueOptionSelected(item.value);
@@ -236,26 +235,31 @@ const DetailActivity = () => {
             id: 1,
             icon: ICSortNew,
             label: 'Terbaru',
+            dataCy: 'sort-latest',
         },
         {
             id: 2,
             icon: ICSortLast,
             label: 'Terlama',
+            dataCy: 'sort-oldest',
         },
         {
             id: 3,
             icon: ICSortAsc,
             label: 'A-Z',
+            dataCy: 'sort-az',
         },
         {
             id: 4,
             icon: ICSortDesc,
             label: 'Z-A',
+            dataCy: 'sort-za',
         },
         {
             id: 5,
             icon: ICSortUnfinish,
-            label: 'Belum Selesai'
+            label: 'Belum Selesai',
+            dataCy: 'sort-unfinished',
         }
     ];
 
@@ -331,7 +335,7 @@ const DetailActivity = () => {
                                     </span>
                                 </div>
                                 </form>
-                                    <img src={ICTodoSort} alt="sort data"  className="w-16 h-16 ml-[62%] absolute cursor-pointer" onClick={() => setOpenDropdownSort(!openDropdownSort)}/>
+                                    <img data-cy='todo-sort-button' src={ICTodoSort} alt="sort data"  className="w-16 h-16 ml-[62%] absolute cursor-pointer" onClick={() => setOpenDropdownSort(!openDropdownSort)}/>
                                     {openDropdownSort && 
                                         <SortDropdown
                                             selectedSort={selectedSort}
