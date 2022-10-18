@@ -331,7 +331,7 @@ const DetailActivity = () => {
                                     </span>
                                 </div>
                                 </form>
-                                    <img src={ICTodoSort} alt="sort data"  className="w-16 h-16 ml-[62%]  absolute" onClick={() => setOpenDropdownSort(!openDropdownSort)}/>
+                                    <img src={ICTodoSort} alt="sort data"  className="w-16 h-16 ml-[62%] absolute cursor-pointer" onClick={() => setOpenDropdownSort(!openDropdownSort)}/>
                                     {openDropdownSort && 
                                         <SortDropdown
                                             selectedSort={selectedSort}
