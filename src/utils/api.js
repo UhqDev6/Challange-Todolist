@@ -106,7 +106,7 @@ const getDetailActivity = async (id) => {
     }
 }
 
-const patchTitleActivity = async (id, title) => {
+const patchTitleActivity = async (id, data) => {
     try {
         const response = await fetch(`${BASE_URL}/activity-groups/${id}`, {
             
@@ -117,7 +117,7 @@ const patchTitleActivity = async (id, title) => {
             },
             body: JSON.stringify(
                 {
-                    title
+                    title : data.title
                 }
             ),
         });
