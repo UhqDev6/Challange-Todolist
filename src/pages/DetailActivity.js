@@ -66,7 +66,10 @@ const DetailActivity = () => {
             ...detailActivity,
             title: detailActivity
         }
-        await patchTitleActivity(id, data);
+        const {success} = await patchTitleActivity(id, data);
+        if(!success) {
+            getTodoItem();
+        }
     }
 
     const getTodoItem = async () => {
