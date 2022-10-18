@@ -52,7 +52,7 @@ const DetailActivity = () => {
     useEffect(() => {
         const getDetailDataActivity = async () => {
             const data = await getDetailActivity(id);
-            setDetailActivity(data);
+            setDetailActivity(data.title);
             setIsLoading(false);
         };
         getDetailDataActivity();
@@ -66,10 +66,9 @@ const DetailActivity = () => {
             ...detailActivity,
             title: detailActivity
         }
-        const {success} = await patchTitleActivity(id, data);
-        if(!success) {
-            getTodoItem();
-        }
+    
+        await patchTitleActivity(id, data);
+
     }
 
     const getTodoItem = async () => {
@@ -325,13 +324,12 @@ const DetailActivity = () => {
                                 </Link>
                             </Button>
                                 <form onSubmit={handleUpdateTitle}>
-                                <div className="flex">
                                     <input 
                                         data-cy='todo-title'
                                         required
                                         autoFocus
                                         type='text'
-                                        value={detailActivity.title}
+                                        value={detailActivity}
                                         onChange={handleValueChange}
                                         className="text-black text-4xl font-semibold -ml-[50%] mt-[12px] outline-0 hover:border-b-2 border-gray-300"
                                     />
@@ -340,7 +338,6 @@ const DetailActivity = () => {
                                         <img src={ICTodoTitleEdit} alt='todo title edit' className="w-7 h-7"/>
                                     </Button>
                                     </span>
-                                </div>
                                 </form>
                                     <img data-cy='todo-sort-button' src={ICTodoSort} alt="sort data"  className="w-16 h-16 ml-[62%] absolute cursor-pointer" onClick={() => setOpenDropdownSort(!openDropdownSort)}/>
                                     {openDropdownSort && 
