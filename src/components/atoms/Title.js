@@ -1,8 +1,7 @@
-const Title = (props) => {
-        const {className = 'text-white text-sm font-semibold', data='activity', text, children} = props;
+const Title = ({className = 'text-white text-sm font-semibold', data, text, children, ...props}) => {
     return(
         <>
-            <p data-cy={`${data}`} className={`${className}`}>
+            <p  {...props} className={`${className}`}>
                 {text || children}
             </p>
         </>
