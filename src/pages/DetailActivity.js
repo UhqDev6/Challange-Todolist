@@ -21,6 +21,12 @@ import Modal from "../components/molecules/Modal";
 import ModalInfo from "../components/atoms/ModalInfo";
 import ModalEdit from "../components/molecules/ModalEdit";
 import ICTodoSort from '../assets/icons/todo-sort-button.png';
+import ICSortNew from '../assets/icons/sort-lates.png';
+import ICSortLast from '../assets/icons/sort-oldest.png';
+import ICSortAsc from '../assets/icons/sort-az.png';
+import ICSortDesc from '../assets/icons/sort-za.png';
+import ICSortUnfinish from '../assets/icons/sort-unfinished.png'
+import SortDropdown from "../components/atoms/SortDropdown";
 // import ICCheck from '../../assets/icons/tabler_check.png'
 const DetailActivity = () => {
 
@@ -219,6 +225,73 @@ const DetailActivity = () => {
     }
 
 
+    // HANDLE SORT TODO
+    const [selectedSort, setSelectedSort] = useState('');
+    const [openDropdownSort, setOpenDropdownSort] = useState(false);
+
+    const sortOptionDropdown = [
+        {
+            id: 1,
+            icon: ICSortNew,
+            label: 'Terbaru',
+        },
+        {
+            id: 2,
+            icon: ICSortLast,
+            label: 'Terlama',
+        },
+        {
+            id: 3,
+            icon: ICSortAsc,
+            label: 'A-Z',
+        },
+        {
+            id: 4,
+            icon: ICSortDesc,
+            label: 'Z-A',
+        },
+        {
+            id: 5,
+            icon: ICSortUnfinish,
+            label: 'Belum Selesai'
+        }
+    ];
+
+    const onHandlerDropdownSelected = (data) => {
+        setOpenDropdownSort(!openDropdownSort);
+        setIndicatorSelected(data.label);
+        if(data.label === 'Terbaru') {
+            todo.sort((a, b) => 
+                b.id - a.id
+            )
+            setSelectedSort('Terbaru');
+        }else if(data.label === 'Terlama'){
+            todo.sort((a, b) =>
+                a.id - b.id
+            )
+            setSelectedSort('Terlama');
+        }else if(data.label === 'A-Z'){
+            todo.sort((a,b) => 
+                a.title.localeCompare(b.title)
+            );
+            setSelectedSort('A-Z');
+        }else if(data.label === 'Z-A'){
+            todo.sort((a,b) =>
+                a.title.localeCompare(b.title)
+            );
+            todo.reverse();
+            setSelectedSort('Z-A');
+        }else {
+            todo.sort((a,b) => 
+                b.is_active - a.is_active
+            )
+            setSelectedSort('Belum Selesai')
+        }
+    }
+
+
+
+
     return(
         <>
             <header>
@@ -256,8 +329,17 @@ const DetailActivity = () => {
                                     </span>
                                 </div>
                                 </form>
-
-                                <img src={ICTodoSort} alt="sort data"  className="w-16 h-16 ml-[62%]  absolute" onClick={() => alert('hello')}/>
+                                    <img src={ICTodoSort} alt="sort data"  className="w-16 h-16 ml-[62%]  absolute" onClick={() => setOpenDropdownSort(!openDropdownSort)}/>
+                                    {openDropdownSort && 
+                                        <SortDropdown
+                                            selectedSort={selectedSort}
+                                            onHandlerDropdownSelected={onHandlerDropdownSelected}
+                                            openDropdownSort={openDropdownSort}
+                                            setOpenDropdownSort={setOpenDropdownSort}
+                                            sortOptionDropdown={sortOptionDropdown}
+                                            indicatorSelected={indicatorSelected}
+                                        />
+                                    }
 
                                 <Button data-cy='todo-add-button' onClick={()=> modalAdd()} className='mr-32 bg-primary hover:bg-secondary w-44'>
                                     <span className="flex mx-auto">
