@@ -318,7 +318,7 @@ const DetailActivity = () => {
                                 </Link>
                             </Button>
                                 <form onSubmit={handleUpdateTitle}>
-                                <div className="flex justify-between">
+                                <div className="flex">
                                     <input 
                                         data-cy='todo-title'
                                         required
@@ -326,9 +326,9 @@ const DetailActivity = () => {
                                         type='text'
                                         value={detailActivity}
                                         onChange={handleValueChange}
-                                        className="text-black text-2xl font-semibold mr-[520px] mt-4 outline-0 hover:border-b-2 border-gray-300"
+                                        className="text-black text-4xl font-semibold -ml-[50%] mt-[12px] outline-0 hover:border-b-2 border-gray-300"
                                     />
-                                    <span className="absolute ml-[20%] mt-[1px]">
+                                    <span className="absolute ml-[10%] mt-[1px]">
                                     <Button data-cy='todo-title-edit-button'>
                                         <img src={ICTodoTitleEdit} alt='todo title edit' className="w-7 h-7"/>
                                     </Button>

@@ -69,7 +69,7 @@ const Activity = () => {
             <main>
                 <div className="container mt-14 justify-center mx-auto">
                     <div className="flex justify-between">
-                        <Title data='activity-title' className='text-black text-2xl font-semibold  ml-32 mt-4 '>
+                        <Title data-cy='activity-title' className='text-black text-4xl font-semibold  ml-32 mt-4 '>
                             Activity
                         </Title>
                             <Button data-cy='activity-add-button' onClick={() => addActivity()} className='mr-32 bg-primary hover:bg-secondary w-44'>

@@ -1,4 +1,4 @@
-const Title = ({className = 'text-white text-sm font-semibold', data, text, children, ...props}) => {
+const Title = ({className = 'text-white text-sm font-semibold', text, children, ...props}) => {
     return(
         <>
             <p  {...props} className={`${className}`}>
