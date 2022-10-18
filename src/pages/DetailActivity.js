@@ -60,13 +60,13 @@ const DetailActivity = () => {
 
     const handleValueChange = (event) => setDetailActivity(event.target.value);
 
-    const handleUpdateTitle =  (event) => {
+    const handleUpdateTitle = async (event) => {
         event.preventDefault();
         const data = {
             ...detailActivity,
             title: detailActivity
         }
-        patchTitleActivity(id, data);
+        await patchTitleActivity(id, data);
     }
 
     const getTodoItem = async () => {
