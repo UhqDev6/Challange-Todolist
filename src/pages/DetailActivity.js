@@ -52,7 +52,7 @@ const DetailActivity = () => {
     useEffect(() => {
         const getDetailDataActivity = async () => {
             const data = await getDetailActivity(id);
-            setDetailActivity(data.title);
+            setDetailActivity(data);
             setIsLoading(false);
         };
         getDetailDataActivity();
@@ -328,7 +328,7 @@ const DetailActivity = () => {
                                         required
                                         autoFocus
                                         type='text'
-                                        value={detailActivity}
+                                        value={detailActivity.title}
                                         onChange={handleValueChange}
                                         className="text-black text-4xl font-semibold -ml-[50%] mt-[12px] outline-0 hover:border-b-2 border-gray-300"
                                     />
