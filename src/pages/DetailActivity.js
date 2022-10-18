@@ -115,6 +115,8 @@ const DetailActivity = () => {
         }
     ];
 
+    
+
     const Priority = (item) => {
         if(item === 'very-low'){
             return ICPVeryLow;
