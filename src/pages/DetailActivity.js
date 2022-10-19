@@ -237,31 +237,26 @@ const DetailActivity = () => {
             id: 1,
             icon: ICSortNew,
             label: 'Terbaru',
-            dataCy: 'sort-latest',
         },
         {
             id: 2,
             icon: ICSortLast,
             label: 'Terlama',
-            dataCy: 'sort-oldest',
         },
         {
             id: 3,
             icon: ICSortAsc,
             label: 'A-Z',
-            dataCy: 'sort-az',
         },
         {
             id: 4,
             icon: ICSortDesc,
             label: 'Z-A',
-            dataCy: 'sort-za',
         },
         {
             id: 5,
             icon: ICSortUnfinish,
             label: 'Belum Selesai',
-            dataCy: 'sort-unfinished',
         }
     ];
 
@@ -335,8 +330,8 @@ const DetailActivity = () => {
                                     </Button>
                                     </span>
                                 </form>
-                                <Button data-cy='todo-sort-button'  className="w-24 h-24 ml-[62%] -mt-4 absolute cursor-pointer" >
-                                    <img src={ICTodoSort} alt="sort data" onClick={() => setOpenDropdownSort(!openDropdownSort)}/>
+                                <Button data-cy='todo-sort-button'  onClick={() => setOpenDropdownSort(!openDropdownSort)}  className="w-24 h-24 ml-[62%] -mt-4 absolute cursor-pointer" >
+                                    <img src={ICTodoSort} alt="sort data"/>
                                 </Button>
                                     {openDropdownSort && 
                                         <SortDropdown
