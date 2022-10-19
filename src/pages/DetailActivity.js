@@ -335,8 +335,8 @@ const DetailActivity = () => {
                                     </Button>
                                     </span>
                                 </form>
-                                <Button data-cy='todo-sort-button'  className="w-24 h-24 ml-[62%] -mt-4 absolute cursor-pointer"  onClick={() => setOpenDropdownSort(!openDropdownSort)} >
-                                    <img src={ICTodoSort} alt="sort data"/>
+                                <Button data-cy='todo-sort-button'  className="w-24 h-24 ml-[62%] -mt-4 absolute cursor-pointer" >
+                                    <img src={ICTodoSort} alt="sort data" onClick={() => setOpenDropdownSort(!openDropdownSort)}/>
                                 </Button>
                                     {openDropdownSort && 
                                         <SortDropdown
