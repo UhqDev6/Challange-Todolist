@@ -315,15 +315,14 @@ const DetailActivity = () => {
                                 <div>
                                     <input 
                                         data-cy='todo-title'
-                                        required
                                         autoFocus
                                         type='text'
                                         value={editTodoTitle}
                                         onChange={handleValueChange}
                                         onMouseOut={handleUpdateTitle}
-                                        className="text-black text-4xl font-semibold -ml-[50%] mt-[12px] outline-0 hover:border-b-2 border-gray-300"
+                                        className="text-black text-4xl font-semibold mt-[12px] -ml-[48%] outline-0 "
                                     />
-                                    <span className="absolute ml-[10%] mt-[1px]">
+                                    <span className="absolute ml-[0%] mt-[1px]">
                                     <Button data-cy='todo-title-edit-button'>
                                         <img src={ICTodoTitleEdit} alt='todo title edit' className="w-7 h-7"/>
                                     </Button>
