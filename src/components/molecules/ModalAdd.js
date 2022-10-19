@@ -35,7 +35,6 @@ const ModalAdd = (
                         <h3 data-cy='modal-add-title' className="text-black font-semibold text-xl">Tambah List Item</h3>
                         <img data-cy='modal-add-close-button' src={ICClose} alt='modal add close button' onClick={() => closeModalAdd(false)} className='mx-auto h-7 w-7 ml-[95%] -mt-[30px] cursor-pointer'/>
                     </div>
-                    <div className='p-2 w-full'>
                         <form className="px-8 pt-6 pb-8 mb-4" onSubmit={onSubmitNoteHandler} >
                             <div className="mt-6">
                                 <Label data-cy='modal-add-name-title' className='block text-gray-700 text-sm font-semibold mr-[80%]' >NAMA LIST ITEM</Label>
@@ -72,7 +71,6 @@ const ModalAdd = (
                                 )}
                             </div>
                         </form>
-                    </div>
                 </div>
             </div>
         </div>

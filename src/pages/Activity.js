@@ -119,7 +119,7 @@ const Activity = () => {
 
                         </div>
                     </div>
-                    {openModal && <Modal closeModal={setOpenModal} dataActivity={dataActivity} deleteActivity={onDeleteHandler} />}
+                    {openModal && <div onClick={() => setOpenModal(!openModal)}><Modal closeModal={setOpenModal} dataActivity={dataActivity} deleteActivity={onDeleteHandler} /></div>}
                     {modalInformation && <ModalInfo setModalInformation={setModalInformation}/>}
                 </article>
             </main>

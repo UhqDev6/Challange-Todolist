@@ -435,7 +435,7 @@ const DetailActivity = () => {
                         handleEditTodoNameItem={handleEditTodoNameItem}
                     />
                 }
-                {openModal && <Modal closeModalTodo={setOpenModal} dataTodo={dataTodo} deleteTodo={onDeleteTodoHandler} />}
+                {openModal && <div onClick={() => setOpenModal(!openModal)}><Modal dataTodo={dataTodo} deleteTodo={onDeleteTodoHandler} /></div> }
                 {modalInformation && <ModalInfo setModalInformation={setModalInformation} />}
                 </article>
                 </>
