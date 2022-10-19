@@ -9,7 +9,6 @@ const SortDropdown = (
     return(
         <>
                     <div data-cy='sort-parent' className={'fixed z-20 shadow-sm w-[20%] ml-[62%] mt-[5%]'}>
-                    <div data-cy='sort-selection'>
                         {
                             sortOptionDropdown.map((sorting) => (
                                 <div key={sorting.id}>
@@ -24,7 +23,6 @@ const SortDropdown = (
                             ))
                         }
                     </div> 
-                    </div>
         </>
     );
 }
