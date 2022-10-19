@@ -54,7 +54,7 @@ const DetailActivity = () => {
         const getDetailDataActivity = async () => {
             const data = await getDetailActivity(id);
             setDetailActivity(data);
-            setEditTodoTitle(data)
+            setEditTodoTitle(data.title)
             setIsLoading(false);
         };
         getDetailDataActivity();
@@ -317,7 +317,7 @@ const DetailActivity = () => {
                                         data-cy='todo-title'
                                         autoFocus
                                         type='text'
-                                        value={editTodoTitle.title}
+                                        value={editTodoTitle}
                                         onChange={handleValueChange}
                                         onMouseOut={handleUpdateTitle}
                                         className="text-black text-[36px] font-semibold mt-[6px] -ml-[48%] outline-0 "
