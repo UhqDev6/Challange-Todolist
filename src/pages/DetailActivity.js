@@ -35,6 +35,8 @@ const DetailActivity = () => {
     const {id} = useParams();
     const [isLoading, setIsLoading] = useState(true);
     const [openModalAdd , setOpenModalAdd] = useState(false);
+    const [ubahTitle, setUbahTitle] = useState(false);
+    const [getTitle, setGetTitle] = useState('');
 
     //Save Data Todo Item
     const onAddTodoHandler = async (inputListItem, valueOptionSelected) => {
@@ -55,6 +57,7 @@ const DetailActivity = () => {
             const data = await getDetailActivity(id);
             setDetailActivity(data);
             setEditTodoTitle(data.title)
+            setGetTitle(data.title)
             setIsLoading(false);
         };
         getDetailDataActivity();
@@ -291,7 +294,7 @@ const DetailActivity = () => {
     }
 
 
-    const [ubahTitle, setUbahTitle] = useState(false);
+
 
     return(
         <>
@@ -316,7 +319,7 @@ const DetailActivity = () => {
                                 { !ubahTitle ? (
                                     <div className="w-96 -ml-[54%] relative"  onClick={() => setUbahTitle(!ubahTitle)}>
                                     <p data-cy='todo-title' className="text-black z-10 relative text-[36px] font-semibold mt-[6px] ml-[0%] text-left outline-0">
-                                        {editTodoTitle}
+                                        {getTitle}
                                     </p>
                                     </div>
                                 ) : (
