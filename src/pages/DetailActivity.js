@@ -375,8 +375,13 @@ const DetailActivity = () => {
                                                 ) : (
                                                     <label data-cy='todo-item-title'>{todoItems.title}</label>
                                                 )}
-                                                <img data-cy='todo-item-edit-button' src={ICTodoTitleEdit} alt='todo title edit' className="w-5 h-5 cursor-pointer" onClick={() => modalEdit(todoItems)}/>
-                                                <img data-cy='todo-item-delete-button' src={ICDelete} alt='delete-item' className="h-6 w-6 ml-[65%] absolute cursor-pointer" id={todoItems.id} onClick={() => modalDelete(todoItems)} />
+
+                                                <Button data-cy='todo-item-edit-button' onClick={() => modalEdit(todoItems)}  className="w-5 h-5 cursor-pointer">
+                                                    <img src={ICTodoTitleEdit} alt='todo title edit' />
+                                                </Button>
+                                                <Button data-cy='todo-item-delete-button' id={todoItems.id} onClick={() => modalDelete(todoItems)} className="h-6 w-6 ml-[65%] absolute cursor-pointer" >
+                                                    <img src={ICDelete} alt='delete-item'  />
+                                                </Button>
                                             </div>
                                         </div>
                                         
