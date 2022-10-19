@@ -167,7 +167,7 @@ const DetailActivity = () => {
             is_active: !item.is_active,
             priority: item.priority
         }
-        const {success} =await patchChacked(item.id,chackedInput, id);
+        const {success} = await patchChacked(item.id,chackedInput, id);
         if(!success) {
             getTodoItem();
         }
@@ -176,13 +176,7 @@ const DetailActivity = () => {
 
     //handle modal delete 
     const [openModal, setOpenModal] = useState(false);
-    const [dataTodo, setDataTodo] = useState(
-        {        
-            id: '',
-            title: '',
-            created_at: '',
-        }
-    );
+    const [dataTodo, setDataTodo] = useState({});
     const [modalInformation, setModalInformation] = useState(false);
 
     const modalDelete = (todoItems) => {
@@ -341,7 +335,9 @@ const DetailActivity = () => {
                                     </Button>
                                     </span>
                                 </form>
-                                    <img data-cy='todo-sort-button' src={ICTodoSort} alt="sort data"  className="w-16 h-16 ml-[62%] absolute cursor-pointer" onClick={() => setOpenDropdownSort(!openDropdownSort)}/>
+                                <Button data-cy='todo-sort-button'  className="w-24 h-24 ml-[62%] -mt-4 absolute cursor-pointer"  onClick={() => setOpenDropdownSort(!openDropdownSort)} >
+                                    <img src={ICTodoSort} alt="sort data"/>
+                                </Button>
                                     {openDropdownSort && 
                                         <SortDropdown
                                             selectedSort={selectedSort}

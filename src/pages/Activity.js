@@ -18,11 +18,7 @@ const Activity = () => {
     const [activity, setActivity] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [openModal, setOpenModal] = useState(false);
-    const [dataActivity, setDataActivity] = useState({
-        id: "",
-        title: "",
-        created_at: "",
-    });
+    const [dataActivity, setDataActivity] = useState({});
     const [modalInformation, setModalInformation] = useState(false);
 
 
