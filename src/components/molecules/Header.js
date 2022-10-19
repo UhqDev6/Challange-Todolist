@@ -5,7 +5,7 @@ const Header = () => {
         <>
             <div data-cy="header-background" className="flex bg-primary pt-12">
                 <div className="pl-20">
-                    <Title data-cy="header-title" className='text-3xl text-white font-semibold ml-32 pb-10'>
+                    <Title data-cy="header-title" className='text-[24px] text-white font-semibold ml-32 pb-10'>
                         TO DO LIST APP
                     </Title>
                 </div>

@@ -320,7 +320,7 @@ const DetailActivity = () => {
                                         value={editTodoTitle}
                                         onChange={handleValueChange}
                                         onMouseOut={handleUpdateTitle}
-                                        className="text-black text-4xl font-semibold mt-[12px] -ml-[48%] outline-0 "
+                                        className="text-black text-[36px] font-semibold mt-[6px] -ml-[48%] outline-0 "
                                     />
                                     <span className="absolute ml-[0%] mt-[1px]">
                                     <Button data-cy='todo-title-edit-button'>

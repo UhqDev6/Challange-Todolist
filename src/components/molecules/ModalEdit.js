@@ -35,7 +35,7 @@ const ModalEdit = (
 
     return(
         <>
-        <div className="fixed md:inset-0 bg-gray-600 bg-opacity-75">
+        <div className="fixed inset-0 bg-gray-600 bg-opacity-75">
             <div  data-cy='modal-add' className="w-2/4 md:h-auto mx-auto mt-24">
                 <div className=" bg-white rounded-2xl shadow dark:bg-gray-700 z-0">
                     <div className='p-6 border-b justify-between'>
