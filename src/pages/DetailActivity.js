@@ -29,7 +29,8 @@ import SortDropdown from "../components/atoms/SortDropdown";
 
 const DetailActivity = () => {
 
-    const [detailActivity, setDetailActivity] = useState('');
+    const [detailActivity, setDetailActivity] = useState({});
+    const [editTodoTitle, setEditTodoTitle] = useState('');
     const [todo, setTodo] = useState([]);
     const {id} = useParams();
     const [isLoading, setIsLoading] = useState(true);
@@ -52,19 +53,20 @@ const DetailActivity = () => {
     useEffect(() => {
         const getDetailDataActivity = async () => {
             const data = await getDetailActivity(id);
-            setDetailActivity(data.title);
+            setDetailActivity(data);
+            setEditTodoTitle(data.title)
             setIsLoading(false);
         };
         getDetailDataActivity();
     },[id]);
 
-    const handleValueChange = (event) => setDetailActivity(event.target.value);
+    const handleValueChange = (event) => setEditTodoTitle(event.target.value);
 
     const handleUpdateTitle = async (event) => {
         event.preventDefault();
         const data = {
             ...detailActivity,
-            title: detailActivity
+            title: editTodoTitle
         }
     
         await patchTitleActivity(id, data);
@@ -329,7 +331,7 @@ const DetailActivity = () => {
                                         required
                                         autoFocus
                                         type='text'
-                                        value={detailActivity}
+                                        value={editTodoTitle}
                                         onChange={handleValueChange}
                                         className="text-black text-4xl font-semibold -ml-[50%] mt-[12px] outline-0 hover:border-b-2 border-gray-300"
                                     />

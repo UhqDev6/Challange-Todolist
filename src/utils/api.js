@@ -134,7 +134,6 @@ const getTodo = async (id) => {
     try {
         const response = await fetch(`${BASE_URL}/todo-items?activity_group_id=${id}`);
         const responseJson = await response.json();
-        console.log(responseJson);
         return responseJson;
     
     } catch (error) {
@@ -161,7 +160,6 @@ const addTodoItems = async (activity_group_id, title, priority) => {
         });
 
         const responseJson = await response.json();
-        console.log(responseJson);
         return responseJson;
 
     } catch (error) {
@@ -234,21 +232,6 @@ const deleteTodo = async (id) => {
         throw new Error(error.message);
     }
 }
-
-
-// const getTodoItems = async (id) => {
-//     try {
-//         const response = await fetch(`${BASE_URL}/todo-items?activity_group_id=${id}`); 
-//         const  responseJson = await response.json();
-//         console.log(responseJson);
-//         return responseJson;
-//     } catch (error) {
-//         throw new Error(error.message);
-//     }
-
-// }
-
-
 
 
 export {
