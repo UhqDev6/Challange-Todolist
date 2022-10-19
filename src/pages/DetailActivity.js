@@ -70,6 +70,7 @@ const DetailActivity = () => {
         const data = {
             ...detailActivity,
             title: editTodoTitle
+            // title: detailActivity
         }
     
         await patchTitleActivity(id, data);
@@ -316,37 +317,40 @@ const DetailActivity = () => {
                                 </Link>
                             </Button>
                                 <div>
-                                { !isLoading && (
-                                    !ubahTitle ? (
-                                    <div className="w-96 -ml-[54%] relative"  onClick={() => setUbahTitle(!ubahTitle)}>
-                                    <p data-cy='todo-title' className="text-black z-10 relative text-[36px] font-semibold mt-[6px] ml-[0%] text-left outline-0">
-                                        {getTitle}
-                                    </p>
-                                    </div>
-                                    ) : (
+                                    {ubahTitle ? (
+                                        <form onSubmit={handleUpdateTitle}>
                                         <input 
                                             data-cy='todo-title'
                                             autoFocus
                                             type='text'
-                                            defaultValue={editTodoTitle}
+                                            value={editTodoTitle}
                                             onChange={handleValueChange}
-                                            onMouseOut={handleUpdateTitle}
+                                            onBlur={handleUpdateTitle}
                                             className="text-black text-[36px] font-semibold mt-[6px] -ml-[48%] outline-0 "
                                         />
+                                        </form>
+                                    ) : (
+
+                                        <div className="w-96 -ml-[54%] relative"  onClick={() => setUbahTitle(!ubahTitle)}>
+                                        <h1 data-cy='todo-title' className="text-black z-10 relative text-[36px] font-semibold mt-[6px] ml-[0%] text-left outline-0">
+                                            {getTitle}
+                                        </h1>
+                                        </div>
                                     )
-                                )}
-                                    {/* <input 
+                                    }
+                                    {/* <div 
                                         data-cy='todo-title'
                                         type='text'
+                                        autoFocus
                                         value={editTodoTitle}
                                         onChange={handleValueChange}
                                         onMouseOut={handleUpdateTitle}
                                         className="text-black text-[36px] font-semibold mt-[6px] -ml-[48%] outline-0 "
-                                    /> */}
+                                    >{editTodoTitle}</div> */}
 
                                 </div>
                                 
-                                <Button data-cy='todo-title-edit-button' className="absolute ml-[40%] mt-[1px]"  onClick={() => setUbahTitle(!ubahTitle)}>
+                                <Button data-cy='todo-title-edit-button' className="absolute ml-[40%] mt-[1px]" onClick={() => setUbahTitle(!ubahTitle)}>
                                     <img src={ICTodoTitleEdit} alt='todo title edit' className="w-7 h-7"/>
                                 </Button>
                                 <Button data-cy='todo-sort-button'  onClick={() => setOpenDropdownSort(!openDropdownSort)}  className="w-24 h-24 ml-[62%] -mt-4 absolute cursor-pointer" >
