@@ -160,12 +160,13 @@ const DetailActivity = () => {
     }
 
     //handle chacked input
-    const handleChackedInput = async (item) => {
+    const handleUpdateChackedInput = async (item) => {
         const chackedInput = {
-            title: item.title,
-            activity_group_id: item.activity_group_id,
+            ...todo,
+            // title: item.title,
+            // activity_group_id: item.activity_group_id,
             is_active: !item.is_active,
-            priority: item.priority
+            // priority: item.priority
         }
         const {success} = await patchChacked(item.id,chackedInput, id);
         if(!success) {
@@ -369,8 +370,7 @@ const DetailActivity = () => {
                                                     className="w-6 h-6 cursor-pointer" 
                                                     checked={!todoItems.is_active} 
                                                     value={todoItems.title} 
-                                                    name={todoItems.title}
-                                                    onChange={() => handleChackedInput(todoItems)} 
+                                                    onChange={() => handleUpdateChackedInput(todoItems)} 
                                 
                                                 />
                                                 <img data-cy='todo-item-priority-indicator' src={Priority(todoItems.priority)} alt='icon' className="w-5 h-5 mt-[2px]" />
