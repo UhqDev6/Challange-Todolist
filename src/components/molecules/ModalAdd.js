@@ -41,7 +41,7 @@ const ModalAdd = (
                                 <input 
                                     data-cy='modal-add-name-input'
                                     placeholder="Tambahkan nama list item" 
-                                    value={inputListItem}
+                                    defaultValue={inputListItem}
                                     onChange={handleInputListItem}
                                     className="appearance-none border mt-4 rounded w-full py-4 px-3 text-gray-400 focus:outline-none focus:shadow-outline"
                                 />
