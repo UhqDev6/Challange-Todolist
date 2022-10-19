@@ -322,12 +322,11 @@ const DetailActivity = () => {
                                         onMouseOut={handleUpdateTitle}
                                         className="text-black text-[36px] font-semibold mt-[6px] -ml-[48%] outline-0 "
                                     />
-                                    <span className="absolute ml-[0%] mt-[1px]">
-                                    <Button data-cy='todo-title-edit-button'>
-                                        <img src={ICTodoTitleEdit} alt='todo title edit' className="w-7 h-7"/>
-                                    </Button>
-                                    </span>
                                 </div>
+                                
+                                <Button data-cy='todo-title-edit-button' className="absolute ml-[40%] mt-[1px]">
+                                    <img src={ICTodoTitleEdit} alt='todo title edit' className="w-7 h-7"/>
+                                </Button>
                                 <Button data-cy='todo-sort-button'  onClick={() => setOpenDropdownSort(!openDropdownSort)}  className="w-24 h-24 ml-[62%] -mt-4 absolute cursor-pointer" >
                                     <img src={ICTodoSort} alt="sort data"/>
                                 </Button>
