@@ -163,10 +163,7 @@ const DetailActivity = () => {
     const handleUpdateChackedInput = async (item) => {
         const chackedInput = {
             ...todo,
-            // title: item.title,
-            // activity_group_id: item.activity_group_id,
             is_active: !item.is_active,
-            // priority: item.priority
         }
         const {success} = await patchChacked(item.id,chackedInput, id);
         if(!success) {
