@@ -311,9 +311,10 @@ const DetailActivity = () => {
                         <div className="flex justify-between">
                             <Button data-cy='todo-back-button'>
                                 <Link to={'/'}>
-                                    <img src={ICBack} alt='todo back button' className="w-8 h-8 ml-32"/>
+                                    <img src={ICBack} alt='todo back button' className="w-8 h-8 ml-28"/>
                                 </Link>
                             </Button>
+                                <div>
                                     <input 
                                         data-cy='todo-title'
                                         required
@@ -321,13 +322,15 @@ const DetailActivity = () => {
                                         type='text'
                                         value={editTodoTitle}
                                         onChange={handleValueChange}
-                                        className="text-black text-4xl font-semibold -ml-[30%] mt-[0px] outline-0 hover:border-b-2 border-gray-300"
+                                        onMouseOut={handleUpdateTitle}
+                                        className="text-black text-4xl font-semibold -ml-[50%] mt-[12px] outline-0 hover:border-b-2 border-gray-300"
                                     />
-                                    <span className="absolute ml-[35%] mt-[1px]">
-                                    <Button data-cy='todo-title-edit-button' onClick={handleUpdateTitle}>
+                                    <span className="absolute ml-[10%] mt-[1px]">
+                                    <Button data-cy='todo-title-edit-button'>
                                         <img src={ICTodoTitleEdit} alt='todo title edit' className="w-7 h-7"/>
                                     </Button>
                                     </span>
+                                </div>
                                 <Button data-cy='todo-sort-button'  onClick={() => setOpenDropdownSort(!openDropdownSort)}  className="w-24 h-24 ml-[62%] -mt-4 absolute cursor-pointer" >
                                     <img src={ICTodoSort} alt="sort data"/>
                                 </Button>
