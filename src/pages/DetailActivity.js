@@ -314,8 +314,8 @@ const DetailActivity = () => {
                             </Button>
                                 <div>
                                 { !ubahTitle ? (
-                                    <div className="w-96 -ml-[54%] relative "  onClick={() => setUbahTitle(!ubahTitle)}>
-                                    <p className="text-black z-10 relative text-[36px] font-semibold mt-[6px] ml-[0%] text-left outline-0 ">
+                                    <div className="w-96 -ml-[54%] relative"  onClick={() => setUbahTitle(!ubahTitle)}>
+                                    <p data-cy='todo-title' className="text-black z-10 relative text-[36px] font-semibold mt-[6px] ml-[0%] text-left outline-0">
                                         {editTodoTitle}
                                     </p>
                                     </div>
