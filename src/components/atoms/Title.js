@@ -1,9 +1,9 @@
 const Title = ({className = 'text-white text-sm font-semibold', text, children, ...props}) => {
     return(
         <>
-            <p  {...props} className={`${className}`}>
+            <h1  {...props} className={`${className}`}>
                 {text || children}
-            </p>
+            </h1>
         </>
     );
 }

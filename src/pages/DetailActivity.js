@@ -3,7 +3,7 @@ import Header from "../components/molecules/Header";
 import ICPlus from '../assets/icons/tabler_plus.png';
 import ICBack from '../assets/icons/todo-back-button.png';
 import ICTodoTitleEdit from '../assets/icons/todo-item-edit-button.png';
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { addTodoItems, deleteTodo, getDetailActivity, getTodo, patchChacked, patchTitleActivity, updateTodo } from "../utils/api";
 import Loading from "../components/atoms/Loading";
@@ -71,7 +71,7 @@ const DetailActivity = () => {
         const data = {
             ...detailActivity,
             title: editTodoTitle
-            // title: detailActivity
+
         }
     
         await patchTitleActivity(id, data);
@@ -82,10 +82,11 @@ const DetailActivity = () => {
         const {data} = await getTodo(id);
         setTodo(data);
         setIsLoading(false);
-    }
+    };
+
     useEffect(() => {
         getTodoItem();
-    },[id]);
+    },[]);
 
     const modalAdd = () => {
         setOpenModalAdd(true);
@@ -344,15 +345,6 @@ const DetailActivity = () => {
                                         </div>
                                     )
                                     }
-                                    {/* <div 
-                                        data-cy='todo-title'
-                                        type='text'
-                                        autoFocus
-                                        value={editTodoTitle}
-                                        onChange={handleValueChange}
-                                        onMouseOut={handleUpdateTitle}
-                                        className="text-black text-[36px] font-semibold mt-[6px] -ml-[48%] outline-0 "
-                                    >{editTodoTitle}</div> */}
 
                                 </div>
                                 
