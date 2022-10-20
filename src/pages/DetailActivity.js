@@ -463,7 +463,12 @@ const DetailActivity = () => {
                     </>
                 }
                 {openModal && <Modal closeModalTodo={setOpenModal} dataTodo={dataTodo} deleteTodo={onDeleteTodoHandler} /> }
-                {modalInformation && <ModalInfo setModalInformation={setModalInformation} />}
+                {modalInformation && 
+                    <>
+                    <ModalBackground CloseModalInformation={setModalInformation}  />
+                    <ModalInfo setModalInformation={setModalInformation} />
+                    </>
+                }
                 </article>
                 </>
             </main>
