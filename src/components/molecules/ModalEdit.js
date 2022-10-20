@@ -35,8 +35,7 @@ const ModalEdit = (
 
     return(
         <>
-        <div className="fixed inset-0 bg-gray-600 bg-opacity-75">
-            <div  data-cy='modal-add' className="w-2/4 md:h-auto mx-auto mt-24">
+            <div  data-cy='modal-add' className="w-2/4 md:h-auto mx-auto fixed z-50 ml-[25%] -mt-[35%]">
                 <div className=" bg-white rounded-2xl shadow dark:bg-gray-700 z-0">
                     <div className='p-6 border-b justify-between'>
                         <h3 data-cy='modal-add-title' className="text-black font-semibold text-xl">Edit List Item</h3>
@@ -80,7 +79,6 @@ const ModalEdit = (
                         </form>
                 </div>
             </div>
-        </div>
         </>
     );
 }

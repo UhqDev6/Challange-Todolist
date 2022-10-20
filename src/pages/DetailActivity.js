@@ -26,6 +26,7 @@ import ICSortAsc from '../assets/icons/sort-az.png';
 import ICSortDesc from '../assets/icons/sort-za.png';
 import ICSortUnfinish from '../assets/icons/sort-unfinished.png'
 import SortDropdown from "../components/atoms/SortDropdown";
+import ModalBackground from "../components/atoms/ModalBackground";
 
 const DetailActivity = () => {
 
@@ -414,41 +415,47 @@ const DetailActivity = () => {
                         </div>
                     </div>
                 {openModalAdd && 
-                    <ModalAdd 
-                        closeModalAdd={setOpenModalAdd} 
-                        openOptionSelected={openOptionSelected} 
-                        setOpenOptionSelected={setOpenOptionSelected}
-                        iconOptionSelected={iconOptionSelected}
-                        labelOptionSelected={labelOptionSelected}
-                        valueOptionSelected={valueOptionSelected}
-                        setIconOptionSelected={setIconOptionSelected}
-                        setLabelOptionSelected={setLabelOptionSelected}
-                        setValueOptionSelected={setValueOptionSelected}
-                        optionSelected={optionSelected}
-                        indicatorSelected={indicatorSelected}
-                        HandleOptionSelected={HandleOptionSelected}
-                        addTodo={onAddTodoHandler}
-                    />
+                    <>
+                        <ModalBackground openModalAdd={openModalAdd} closeModalAdd={setOpenModalAdd} setOpenModalAdd={openModalAdd} />
+                        <ModalAdd 
+                            closeModalAdd={setOpenModalAdd} 
+                            openOptionSelected={openOptionSelected} 
+                            setOpenOptionSelected={setOpenOptionSelected}
+                            iconOptionSelected={iconOptionSelected}
+                            labelOptionSelected={labelOptionSelected}
+                            valueOptionSelected={valueOptionSelected}
+                            setIconOptionSelected={setIconOptionSelected}
+                            setLabelOptionSelected={setLabelOptionSelected}
+                            setValueOptionSelected={setValueOptionSelected}
+                            optionSelected={optionSelected}
+                            indicatorSelected={indicatorSelected}
+                            HandleOptionSelected={HandleOptionSelected}
+                            addTodo={onAddTodoHandler}
+                        />
+                    </>
                 }
                 {openModalEdit && 
-                    <ModalEdit 
-                        closeModalEdit={setOpenModalEdit} 
-                        openOptionSelected={openOptionSelected} 
-                        setOpenOptionSelected={setOpenOptionSelected}
-                        iconOptionSelected={iconOptionSelected}
-                        labelOptionSelected={labelOptionSelected}
-                        valueOptionSelected={valueOptionSelected}
-                        setIconOptionSelected={setIconOptionSelected}
-                        setLabelOptionSelected={setLabelOptionSelected}
-                        setValueOptionSelected={setValueOptionSelected}
-                        optionSelected={optionSelected}
-                        indicatorSelected={indicatorSelected}
-                        HandleOptionSelected={HandleOptionSelected}
-                        editTodo={onEditTodoHandler}
-                        dataEdit={dataEdit}
-                        editTodoNameItem={editTodoNameItem}
-                        handleEditTodoNameItem={handleEditTodoNameItem}
-                    />
+                    <>
+                        <ModalBackground openModalEdit={openModalEdit} closeModalEdit={setOpenModalEdit} setOpenModalEdit={openModalEdit} />
+                        <ModalEdit 
+                            closeModalEdit={setOpenModalEdit} 
+                            openOptionSelected={openOptionSelected} 
+                            setOpenOptionSelected={setOpenOptionSelected}
+                            iconOptionSelected={iconOptionSelected}
+                            labelOptionSelected={labelOptionSelected}
+                            valueOptionSelected={valueOptionSelected}
+                            setIconOptionSelected={setIconOptionSelected}
+                            setLabelOptionSelected={setLabelOptionSelected}
+                            setValueOptionSelected={setValueOptionSelected}
+                            optionSelected={optionSelected}
+                            indicatorSelected={indicatorSelected}
+                            HandleOptionSelected={HandleOptionSelected}
+                            editTodo={onEditTodoHandler}
+                            dataEdit={dataEdit}
+                            editTodoNameItem={editTodoNameItem}
+                            handleEditTodoNameItem={handleEditTodoNameItem}
+                        />
+                    </>
                 }
                 {openModal && <div onClick={() => setOpenModal(!openModal)}><Modal dataTodo={dataTodo} deleteTodo={onDeleteTodoHandler} /></div> }
                 {modalInformation && <ModalInfo setModalInformation={setModalInformation} />}
