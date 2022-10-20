@@ -5,7 +5,7 @@ const Modal = ({closeModal, dataActivity, deleteActivity, closeModalTodo, dataTo
     return(
         <>
             { dataActivity && (
-                <div className="fixed inset-0 bg-gray-600 bg-opacity-75" onClick={() => closeModal(false)}>
+                <div className="fixed inset-0 bg-gray-600 bg-opacity-75">
                     <div  data-cy='modal-delete' className="w-2/6 md:h-auto mx-auto mt-56">
                         <div className=" bg-white rounded-2xl shadow dark:bg-gray-700">
                             <div className='p-6 text-center'>
@@ -26,7 +26,7 @@ const Modal = ({closeModal, dataActivity, deleteActivity, closeModalTodo, dataTo
             )}
 
             { dataTodo && (
-                <div className="fixed inset-0 bg-gray-600 bg-opacity-75" onClick={() => closeModalTodo(false)}>
+                <div className="fixed inset-0 bg-gray-600 bg-opacity-75">
                     <div  data-cy='modal-delete' className="w-2/6 md:h-auto mx-auto mt-56">
                         <div className=" bg-white rounded-2xl shadow dark:bg-gray-700">
                             <div className='p-6 text-center'>

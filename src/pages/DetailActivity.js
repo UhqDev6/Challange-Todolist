@@ -406,8 +406,8 @@ const DetailActivity = () => {
                                                 ) : (
                                                     <label data-cy='todo-item-title'>{todoItems.title}</label>
                                                 )}
-                                                <img data-cy='todo-item-edit-button' onClick={() => modalEdit(todoItems)} src={ICTodoTitleEdit} alt='todo title edit' className="w-5 h-5 cursor-pointer"/>
-                                                <img data-cy='todo-item-delete-button' onClick={() => modalDelete(todoItems)}   src={ICDelete} alt='delete-item' className="h-6 w-6 ml-[65%] absolute cursor-pointer" />
+                                                <img onClick={() => modalEdit(todoItems)} data-cy='todo-item-edit-button' src={ICTodoTitleEdit} alt='todo title edit' className="w-5 h-5 cursor-pointer"/>
+                                                <img onClick={() => modalDelete(todoItems)}  data-cy='todo-item-delete-button' src={ICDelete} alt='delete-item' className="h-6 w-6 ml-[65%] absolute cursor-pointer" />
                                             </div>
                                         </div>
                                         
@@ -462,7 +462,7 @@ const DetailActivity = () => {
                         />
                     </>
                 }
-                {openModal && <Modal closeModalTodo={setOpenModal} dataTodo={dataTodo} deleteTodo={onDeleteTodoHandler} /> }
+                {openModal && <div onClick={() => setOpenModal(!openModal)}><Modal dataTodo={dataTodo} deleteTodo={onDeleteTodoHandler} /></div> }
                 {modalInformation && <ModalInfo setModalInformation={setModalInformation} />}
                 </article>
                 </>
