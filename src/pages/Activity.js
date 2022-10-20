@@ -12,8 +12,6 @@ import { Link } from "react-router-dom";
 import { showFormattedDate } from "../utils/date";
 import Modal from "../components/molecules/Modal";
 import ModalInfo from "../components/atoms/ModalInfo";
-import ModalBackground from "../components/atoms/ModalBackground";
-import ModalInfoo from "../components/atoms/ModalInfoo";
 
 const Activity = () => {
 
@@ -118,12 +116,7 @@ const Activity = () => {
                         </div>
                     </div>
                     {openModal && <Modal closeModal={setOpenModal} dataActivity={dataActivity} deleteActivity={onDeleteHandler} />}
-                    {modalInformation && 
-                    <>
-                    <ModalBackground CloseModalInformation={setModalInformation}  />
-                    <ModalInfoo setModalInformation={setModalInformation} />
-                    </>
-                }
+                    {modalInformation && <ModalInfo setModalInformation={setModalInformation}/>}
                 </article>
             </main>
         </>
