@@ -240,26 +240,31 @@ const DetailActivity = () => {
             id: 1,
             icon: ICSortNew,
             label: 'Terbaru',
+            data:'sort-lates'
         },
         {
             id: 2,
             icon: ICSortLast,
             label: 'Terlama',
+            data:'sort-oldest'
         },
         {
             id: 3,
             icon: ICSortAsc,
             label: 'A-Z',
+            data:'sort-az'
         },
         {
             id: 4,
             icon: ICSortDesc,
             label: 'Z-A',
+            data:'sort-za'
         },
         {
             id: 5,
             icon: ICSortUnfinish,
             label: 'Belum Selesai',
+            data:'sort-unfinished'
         }
     ];
 
