@@ -5,8 +5,7 @@ const Modal = ({closeModal, dataActivity, deleteActivity, closeModalTodo, dataTo
     return(
         <>
             { dataActivity && (
-                <div className="fixed inset-0 bg-gray-600 bg-opacity-75">
-                    <div  data-cy='modal-delete' className="w-2/6 md:h-auto mx-auto mt-56">
+                    <div  data-cy='modal-delete' className="w-2/6 md:h-auto mx-auto z-50 fixed -mt-[25%] ml-[33%]">
                         <div className=" bg-white rounded-2xl shadow dark:bg-gray-700">
                             <div className='p-6 text-center'>
                                 <img data-cy='modal-delete-icon' src={ICDelete} alt='delete modal' className=' mx-auto h-24 w-24 '/>
@@ -22,12 +21,12 @@ const Modal = ({closeModal, dataActivity, deleteActivity, closeModalTodo, dataTo
                             </div>
                         </div>
                     </div>
-                </div>
+            
             )}
 
             { dataTodo && (
-                <div className="fixed inset-0 bg-gray-600 bg-opacity-75">
-                    <div  data-cy='modal-delete' className="w-2/6 md:h-auto mx-auto mt-56">
+                
+                    <div  data-cy='modal-delete' className="w-2/6 md:h-auto mx-auto z-50 fixed -mt-[15%] ml-[33%]">
                         <div className=" bg-white rounded-2xl shadow dark:bg-gray-700">
                             <div className='p-6 text-center'>
                                 <img data-cy='modal-delete-icon' src={ICDelete} alt='delete modal' className=' mx-auto h-24 w-24 '/>
@@ -43,7 +42,7 @@ const Modal = ({closeModal, dataActivity, deleteActivity, closeModalTodo, dataTo
                             </div>
                         </div>
                     </div>
-                </div>
+            
             )}
         </>
     );
