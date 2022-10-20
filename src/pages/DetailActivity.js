@@ -82,7 +82,7 @@ const DetailActivity = () => {
 
     useEffect(() => {
         getTodoItem();
-    },[id]);
+    },[]);
 
     const modalAdd = () => {
         setOpenModalAdd(true);
