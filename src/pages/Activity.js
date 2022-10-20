@@ -35,10 +35,10 @@ const Activity = () => {
 
 
     const addActivity = async () => {
-        await postActivity({title: 'New Activity', email: 'ulhaqitcom@gmail.com'});
-        // if(!success) {
+        const success = await postActivity({title: 'New Activity', email: 'ulhaqitcom@gmail.com'});
+        if(!success) {
             getDataActivity();
-        // }
+        }
 
     }
 

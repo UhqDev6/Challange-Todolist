@@ -41,9 +41,12 @@ const DetailActivity = () => {
 
     //Save Data Todo Item
     const onAddTodoHandler = async (inputListItem, valueOptionSelected) => {
-        await addTodoItems(id, inputListItem, valueOptionSelected)
+        const {success} = await addTodoItems(id, inputListItem, valueOptionSelected)
+        if(!success) {
             setOpenModalAdd(false)
             getTodoItem();
+        }
+
     }
     
     useEffect(() => {
@@ -79,7 +82,7 @@ const DetailActivity = () => {
 
     useEffect(() => {
         getTodoItem();
-    },[]);
+    },[id]);
 
     const modalAdd = () => {
         setOpenModalAdd(true);
