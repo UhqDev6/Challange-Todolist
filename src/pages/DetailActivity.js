@@ -219,11 +219,11 @@ const DetailActivity = () => {
             title: editTodoNameItem,
             priority: valueOptionSelected
         }
-        const {success} = await updateTodo( dataEdit.id, data)
-        if(!success) {
+         await updateTodo( dataEdit.id, data)
+        // if(!success) {
             setOpenModalEdit(false)
             getTodoItem();
-        }
+        // }
 
     }
 
