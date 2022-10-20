@@ -462,16 +462,8 @@ const DetailActivity = () => {
                         />
                     </>
                 }
-                {openModal && <div onClick={() => setOpenModal(!openModal)}>
-                    <ModalBackground openModal={openModal}/>
-                    <Modal dataTodo={dataTodo} deleteTodo={onDeleteTodoHandler} />
-                </div> }
-                {modalInformation && 
-                    <>
-                    <ModalBackground modalInformation={modalInformation} setModalInformation={setModalInformation} />
-                    <ModalInfo setModalInformation={setModalInformation} />
-                    </>
-                }
+                {openModal && <div onClick={() => setOpenModal(!openModal)}><Modal dataTodo={dataTodo} deleteTodo={onDeleteTodoHandler} /></div> }
+                {modalInformation && <ModalInfo setModalInformation={setModalInformation} />}
                 </article>
                 </>
             </main>
