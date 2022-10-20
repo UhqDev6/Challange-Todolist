@@ -421,7 +421,7 @@ const DetailActivity = () => {
                     </div>
                 {openModalAdd && 
                     <>
-                        <ModalBackground openModalAdd={openModalAdd} closeModalAdd={setOpenModalAdd} setOpenModalAdd={openModalAdd} />
+                        {/* <ModalBackground openModalAdd={openModalAdd} closeModalAdd={setOpenModalAdd} setOpenModalAdd={openModalAdd} /> */}
                         <ModalAdd 
                             closeModalAdd={setOpenModalAdd} 
                             openOptionSelected={openOptionSelected} 
@@ -441,7 +441,7 @@ const DetailActivity = () => {
                 }
                 {openModalEdit && 
                     <>
-                        <ModalBackground openModalEdit={openModalEdit} closeModalEdit={setOpenModalEdit} setOpenModalEdit={openModalEdit} />
+                        {/* <ModalBackground openModalEdit={openModalEdit} closeModalEdit={setOpenModalEdit} setOpenModalEdit={openModalEdit} /> */}
                         <ModalEdit 
                             closeModalEdit={setOpenModalEdit} 
                             openOptionSelected={openOptionSelected} 
