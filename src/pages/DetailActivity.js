@@ -3,7 +3,7 @@ import Header from "../components/molecules/Header";
 import ICPlus from '../assets/icons/tabler_plus.png';
 import ICBack from '../assets/icons/todo-back-button.png';
 import ICTodoTitleEdit from '../assets/icons/todo-item-edit-button.png';
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { addTodoItems, deleteTodo, getDetailActivity, getTodo, patchChacked, patchTitleActivity, updateTodo } from "../utils/api";
 import Loading from "../components/atoms/Loading";
@@ -41,11 +41,11 @@ const DetailActivity = () => {
 
     //Save Data Todo Item
     const onAddTodoHandler = async (inputListItem, valueOptionSelected) => {
-        const {success} = await addTodoItems(id, inputListItem, valueOptionSelected)
-        if(!success) {
+        await addTodoItems(id, inputListItem, valueOptionSelected)
+        // if(!success) {
             setOpenModalAdd(false)
             getTodoItem();
-        }
+        // }
 
     }
     
@@ -167,10 +167,10 @@ const DetailActivity = () => {
             ...todo,
             is_active: !item.is_active,
         }
-        const {success} = await patchChacked(item.id,chackedInput, id);
-        if(!success) {
+        await patchChacked(item.id,chackedInput, id);
+        // if(!success) {
             getTodoItem();
-        }
+        // }
 
     }
 
@@ -185,12 +185,12 @@ const DetailActivity = () => {
     }
 
     const onDeleteTodoHandler = async (id) => {
-        const {success} = await deleteTodo(id);
-        if(!success) {
+        await deleteTodo(id);
+        // if(!success) {
             setOpenModal(false);
             setModalInformation(true);
             getTodoItem();
-        }
+        // }
     }
 
     //handle edit
@@ -212,14 +212,15 @@ const DetailActivity = () => {
     const handleEditTodoNameItem = (event) => {
         setEditTodoNameItem(event.target.value);
     }
-  
+
+
     const onEditTodoHandler = async () => {
         const data = {
             ...dataEdit,
             title: editTodoNameItem,
             priority: valueOptionSelected
         }
-         await updateTodo( dataEdit.id, data)
+        await updateTodo( dataEdit.id, data)
         // if(!success) {
             setOpenModalEdit(false)
             getTodoItem();
