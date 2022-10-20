@@ -338,7 +338,7 @@ const DetailActivity = () => {
                                     ) : (
 
                                         <div className="w-96 -ml-[54%] relative"  onClick={() => setUbahTitle(!ubahTitle)}>
-                                        <h1 data-cy='todo-title' className="text-black z-10 relative text-[36px] font-semibold mt-[6px] ml-[0%] text-left outline-0">
+                                        <h1 data-cy='todo-title' className="text-black relative text-[36px] font-semibold mt-[6px] ml-[0%] text-left outline-0">
                                             {getTitle}
                                         </h1>
                                         </div>
@@ -421,7 +421,7 @@ const DetailActivity = () => {
                     </div>
                 {openModalAdd && 
                     <>
-                        {/* <ModalBackground openModalAdd={openModalAdd} closeModalAdd={setOpenModalAdd} setOpenModalAdd={openModalAdd} /> */}
+                        <ModalBackground openModalAdd={openModalAdd} closeModalAdd={setOpenModalAdd} setOpenModalAdd={openModalAdd} />
                         <ModalAdd 
                             closeModalAdd={setOpenModalAdd} 
                             openOptionSelected={openOptionSelected} 
@@ -441,7 +441,7 @@ const DetailActivity = () => {
                 }
                 {openModalEdit && 
                     <>
-                        {/* <ModalBackground openModalEdit={openModalEdit} closeModalEdit={setOpenModalEdit} setOpenModalEdit={openModalEdit} /> */}
+                        <ModalBackground openModalEdit={openModalEdit} closeModalEdit={setOpenModalEdit} setOpenModalEdit={openModalEdit} />
                         <ModalEdit 
                             closeModalEdit={setOpenModalEdit} 
                             openOptionSelected={openOptionSelected} 
