@@ -41,11 +41,11 @@ const DetailActivity = () => {
 
     //Save Data Todo Item
     const onAddTodoHandler = async (inputListItem, valueOptionSelected) => {
-        await addTodoItems(id, inputListItem, valueOptionSelected)
-        // if(!success) {
+        const {success} = await addTodoItems(id, inputListItem, valueOptionSelected)
+        if(!success) {
             setOpenModalAdd(false)
             getTodoItem();
-        // }
+        }
 
     }
     
@@ -167,10 +167,10 @@ const DetailActivity = () => {
             ...todo,
             is_active: !item.is_active,
         }
-        await patchChacked(item.id,chackedInput, id);
-        // if(!success) {
+        const {success} = await patchChacked(item.id,chackedInput, id);
+        if(!success) {
             getTodoItem();
-        // }
+        }
 
     }
 
@@ -185,12 +185,12 @@ const DetailActivity = () => {
     }
 
     const onDeleteTodoHandler = async (id) => {
-        await deleteTodo(id);
-        // if(!success) {
+        const {success} = await deleteTodo(id);
+        if(!success) {
             setOpenModal(false);
             setModalInformation(true);
             getTodoItem();
-        // }
+        }
     }
 
     //handle edit
@@ -212,19 +212,18 @@ const DetailActivity = () => {
     const handleEditTodoNameItem = (event) => {
         setEditTodoNameItem(event.target.value);
     }
-
-
+  
     const onEditTodoHandler = async () => {
         const data = {
             ...dataEdit,
             title: editTodoNameItem,
             priority: valueOptionSelected
         }
-        await updateTodo( dataEdit.id, data)
-        // if(!success) {
+        const {success} = await updateTodo( dataEdit.id, data)
+        if(!success) {
             setOpenModalEdit(false)
             getTodoItem();
-        // }
+        }
 
     }
 
@@ -299,8 +298,6 @@ const DetailActivity = () => {
     }
 
 
-
-
     return(
         <>
             <header>
@@ -336,7 +333,7 @@ const DetailActivity = () => {
                                     ) : (
 
                                         <div className="w-96 -ml-[54%] relative"  onClick={() => setUbahTitle(!ubahTitle)}>
-                                        <h1 data-cy='todo-title' className="text-black relative text-[36px] font-semibold mt-[6px] ml-[0%] text-left outline-0">
+                                        <h1 data-cy='todo-title' className="text-black relative text-[36px] font-bold mt-[6px] ml-[0%] text-left outline-0">
                                             {getTitle}
                                         </h1>
                                         </div>

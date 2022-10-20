@@ -12,7 +12,7 @@ const Title = ({children}) => {
     return(
         <>
             <div className="p-8">
-                <h1 data-cy='activity-item-title' className="text-[18px] font-semibold">{children}</h1>
+                <h1 data-cy='activity-item-title' className="text-[18px] font-bold">{children}</h1>
             </div>
         </>
     );
