@@ -41,16 +41,9 @@ const DetailActivity = () => {
 
     //Save Data Todo Item
     const onAddTodoHandler = async (inputListItem, valueOptionSelected) => {
-        const {success} = await addTodoItems(id, inputListItem, valueOptionSelected)
-        console.log({
-            inputListItem,
-            valueOptionSelected
-        })
-        if(!success) {
+        await addTodoItems(id, inputListItem, valueOptionSelected)
             setOpenModalAdd(false)
             getTodoItem();
-        }
-
     }
     
     useEffect(() => {
@@ -171,11 +164,8 @@ const DetailActivity = () => {
             ...todo,
             is_active: !item.is_active,
         }
-        const {success} = await patchChacked(item.id,chackedInput, id);
-        if(!success) {
+        await patchChacked(item.id,chackedInput, id);
             getTodoItem();
-        }
-
     }
 
     //handle modal delete 
@@ -189,12 +179,10 @@ const DetailActivity = () => {
     }
 
     const onDeleteTodoHandler = async (id) => {
-        const {success} = await deleteTodo(id);
-        if(!success) {
+        await deleteTodo(id);
             setOpenModal(false);
             setModalInformation(true);
             getTodoItem();
-        }
     }
 
     //handle edit
@@ -223,11 +211,9 @@ const DetailActivity = () => {
             title: editTodoNameItem,
             priority: valueOptionSelected
         }
-        const {success} = await updateTodo( dataEdit.id, data)
-        if(!success) {
+        await updateTodo( dataEdit.id, data)
             setOpenModalEdit(false)
             getTodoItem();
-        }
 
     }
 
