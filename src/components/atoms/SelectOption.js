@@ -18,7 +18,7 @@ const SelectOption = (
     return(
         <>
             <div className="mt-6 z-10 absolute">
-                <Label data-cy='modal-add-priority-title' className='block text-gray-700 text-sm font-semibold mr-[80%]' >PRIORITY</Label>
+                <Label data-cy='modal-add-priority-title' className='text-gray-700 text-sm font-semibold mr-[80%]' >PRIORITY</Label>
                 <div data-cy='modal-add-priority-dropdown'>
                 { openOptionSelected ? (
                     <div onClick={() => setOpenOptionSelected(!openOptionSelected)} value={valueOptionSelected}  className="appearance-none border mt-4 rounded w-[80%] py-4 px-3 text-gray-600 bg-slate-100 focus:outline-none focus:shadow-outline cursor-pointer">
