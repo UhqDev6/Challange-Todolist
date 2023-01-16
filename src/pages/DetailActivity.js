@@ -26,7 +26,6 @@ import ICSortAsc from '../assets/icons/sort-az.png';
 import ICSortDesc from '../assets/icons/sort-za.png';
 import ICSortUnfinish from '../assets/icons/sort-unfinished.png'
 import SortDropdown from "../components/atoms/SortDropdown";
-import ModalBackground from "../components/atoms/ModalBackground";
 
 const DetailActivity = () => {
 
@@ -82,7 +81,7 @@ const DetailActivity = () => {
 
     useEffect(() => {
         getTodoItem();
-    },[]);
+    }, []);
 
     const modalAdd = () => {
         setOpenModalAdd(true);
@@ -311,7 +310,7 @@ const DetailActivity = () => {
                         </div>
                     ) : (
                         <div className="container mt-14 justify-center mx-auto">
-                        <div className="flex justify-between">
+                        <div className="flex justify-between relative">
                             <Button data-cy='todo-back-button'>
                                 <Link to={'/'}>
                                     <img src={ICBack} alt='todo back button' className="w-8 h-8 ml-28"/>
@@ -375,7 +374,7 @@ const DetailActivity = () => {
                                 <Loading/>
                                 ) : todo.length > 0 ? (
                                     todo.map((todoItems,index) => (
-                                        <div  key={index} className="shadow-slate-200 shadow-md rounded-md overflow-hidden bg-white w-[86%] ml-20 mt-8">
+                                        <div  key={index} className="shadow-slate-200 shadow-md rounded-md overflow-hidden bg-white w-full ml-20 mt-8">
                                             <div data-cy='todo-item' className="p-8 flex gap-8">
                                                 <input
                                                     data-cy='todo-item-checkbox'
@@ -392,8 +391,8 @@ const DetailActivity = () => {
                                                 ) : (
                                                     <label data-cy='todo-item-title'>{todoItems.title}</label>
                                                 )}
-                                                <img onClick={() => modalEdit(todoItems)} data-cy='todo-item-edit-button' src={ICTodoTitleEdit} alt='todo title edit' className="w-5 h-5 cursor-pointer"/>
-                                                <img onClick={() => modalDelete(todoItems)}  data-cy='todo-item-delete-button' src={ICDelete} alt='delete-item' className="h-6 w-6 ml-[65%] fixed cursor-pointer" />
+                                                <img onClick={() => modalEdit(todoItems)} data-cy='todo-item-edit-button' src={ICTodoTitleEdit} alt='todo title edit' className="w-5 h-5 cursor-pointer absolute ml-[66%]"/>
+                                                <img onClick={() => modalDelete(todoItems)}  data-cy='todo-item-delete-button' src={ICDelete} alt='delete-item' className="h-6 w-6 cursor-pointer absolute ml-[70%]" />
                                             </div>
                                         </div>
                                         
@@ -407,7 +406,7 @@ const DetailActivity = () => {
                     </div>
                 {openModalAdd && 
                     <>
-                        <ModalBackground openModalAdd={openModalAdd} closeModalAdd={setOpenModalAdd} setOpenModalAdd={openModalAdd} />
+                    <div className="fixed z-20 inset-0  bg-gray-600 bg-opacity-75">
                         <ModalAdd 
                             closeModalAdd={setOpenModalAdd} 
                             openOptionSelected={openOptionSelected} 
@@ -423,11 +422,12 @@ const DetailActivity = () => {
                             HandleOptionSelected={HandleOptionSelected}
                             addTodo={onAddTodoHandler}
                         />
+                    </div>
                     </>
                 }
                 {openModalEdit && 
                     <>
-                        <ModalBackground openModalEdit={openModalEdit} closeModalEdit={setOpenModalEdit} setOpenModalEdit={openModalEdit} />
+                    <div className="fixed z-20 inset-0  bg-gray-600 bg-opacity-75">
                         <ModalEdit 
                             closeModalEdit={setOpenModalEdit} 
                             openOptionSelected={openOptionSelected} 
@@ -446,6 +446,7 @@ const DetailActivity = () => {
                             editTodoNameItem={editTodoNameItem}
                             handleEditTodoNameItem={handleEditTodoNameItem}
                         />
+                    </div>
                     </>
                 }
                 {openModal && <div onClick={() => setOpenModal(!openModal)}><Modal dataTodo={dataTodo} deleteTodo={onDeleteTodoHandler} /></div> }
