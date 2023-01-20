@@ -63,12 +63,12 @@ const Activity = () => {
             </header>
 
             <main>
-                <div className="container mt-14 justify-center mx-auto">
-                    <div className="flex justify-between">
-                        <h1 data-cy='activity-title' className='text-black text-4xl font-bold  ml-32 mt-4 '>
+                <div className="flex w-full mt-14 mx-auto justify-center">
+                    <div className="flex gap-10">
+                        <h1 data-cy='activity-title' className='text-black text-2xl md:text-4xl font-bold mt-4'>
                             Activity
                         </h1>
-                            <Button data-cy='activity-add-button' onClick={() => addActivity()} className='mr-32 bg-primary hover:bg-secondary w-44'>
+                            <Button data-cy='activity-add-button' onClick={() => addActivity()} className='w-32 bg-primary hover:bg-secondary'>
                                 <span className="flex mx-auto">
                                 <img src={ICPlus} alt="tabler plus" />
                                 Tambah
@@ -77,8 +77,8 @@ const Activity = () => {
                     </div>
                 </div>
                 <article>
-                    <div className="justify-center mx-auto mt-8 ml-32 mr-32">
-                        <div className="flex flex-wrap"> 
+                    <div className="flex w-full mx-auto justify-center">
+                        <div className="flex flex-wrap gap-10"> 
                             { isLoading ? (
                                 <Loading/>
                                 ) : activity.length > 0 ? (

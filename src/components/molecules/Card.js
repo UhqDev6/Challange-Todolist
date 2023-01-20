@@ -1,7 +1,7 @@
 const Card = ({children}) => {
     return(
         <>
-            <div data-cy='activity-item' className="shadow-slate-200 shadow-lg rounded-2xl overflow-hidden bg-white w-72 ml-20 mt-8">
+            <div data-cy='activity-item' className="shadow-slate-200 shadow-lg rounded-2xl overflow-hidden bg-white w-72 mx-auto mt-8">
                 {children}
             </div>
         </>
