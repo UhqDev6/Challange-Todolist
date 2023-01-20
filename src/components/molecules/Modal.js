@@ -5,8 +5,8 @@ const Modal = ({closeModal, dataActivity, deleteActivity, closeModalTodo, dataTo
     return(
         <>
             { dataActivity && (
-                <div className="fixed inset-0 bg-gray-600 bg-opacity-75">
-                    <div  data-cy='modal-delete' className="w-2/6 md:h-auto mx-auto mt-56">
+                <div className="fixed inset-0 bg-gray-600 bg-opacity-75 w-full">
+                    <div  data-cy='modal-delete' className="md:w-2/6 w-[350px] md:h-auto mx-auto mt-56">
                         <div className=" bg-white rounded-2xl shadow dark:bg-gray-700">
                             <div className='p-6 text-center'>
                                 <img data-cy='modal-delete-icon' src={ICDelete} alt='delete modal' className=' mx-auto h-24 w-24 '/>
