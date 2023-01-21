@@ -36,7 +36,7 @@ const ModalEdit = (
     return(
         <>
             {/* <div className="fixed inset-0 bg-gray-600 bg-opacity-75"> */}
-            <div  data-cy='modal-add' className="w-2/4 md:h-auto mx-auto z-30 ml-[25%] mt-[10%]">
+            <div  data-cy='modal-add' className="w-96 sm:w-2/4 md:h-auto mx-auto z-30 sm:ml-[25%] sm:mt-[10%]">
             {/* <div  data-cy='modal-add' className="w-2/4 md:h-auto mx-auto mt-[6%]"> */}
                 <div className=" bg-white rounded-2xl shadow dark:bg-gray-700 z-0">
                     <div className='p-6 border-b justify-between'>
@@ -69,11 +69,11 @@ const ModalEdit = (
                             />
                             <div className="flex p-6 border-t mt-40">
                                 {editTodoNameItem.length < 1 ? (
-                                    <Button data-cy='modal-add-save-button' disabled className='text-white ml-[85%] w-32 mr-20 bg-primary cursor-not-allowed disabled:opacity-25 focus:outline-none font-medium rounded-full text-sm inline-flex px-5 py-2.5 justify-center'>
+                                    <Button data-cy='modal-add-save-button' disabled className='text-white sm:ml-[85%] ml-[75%] w-32 mr-20 bg-primary cursor-not-allowed disabled:opacity-25 focus:outline-none font-medium rounded-full text-sm inline-flex px-5 py-2.5 justify-center'>
                                         Simpan
                                     </Button>
                                 ): (
-                                    <Button data-cy='modal-add-save-button' className='text-white ml-[85%] w-32 mr-20 bg-primary hover:bg-secondary font-medium rounded-full text-sm inline-flex px-5 py-2.5 justify-center'>
+                                    <Button data-cy='modal-add-save-button' className='text-white sm:ml-[85%] ml-[75%] w-32 mr-20 bg-primary hover:bg-secondary font-medium rounded-full text-sm inline-flex px-5 py-2.5 justify-center'>
                                         Simpan
                                     </Button>
                                 )}

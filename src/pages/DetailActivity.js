@@ -309,11 +309,12 @@ const DetailActivity = () => {
                             <Loading/>
                         </div>
                     ) : (
-                        <div className="container mt-14 justify-center mx-auto">
-                        <div className="flex justify-between relative">
+                    <>
+                    <div className="container w-full mt-14 justify-center mx-auto">
+                        <div className="flex sm:relative">
                             <Button data-cy='todo-back-button'>
                                 <Link to={'/'}>
-                                    <img src={ICBack} alt='todo back button' className="w-8 h-8 ml-28"/>
+                                    <img src={ICBack} alt='todo back button' className="w-8 h-8"/>
                                 </Link>
                             </Button>
                                 <div>
@@ -326,25 +327,25 @@ const DetailActivity = () => {
                                             value={editTodoTitle}
                                             onChange={handleValueChange}
                                             onBlur={handleUpdateTitle}
-                                            className="text-black text-[36px] font-semibold mt-[6px] -ml-[48%] outline-0 "
+                                            className="text-black sm:text-[20px] text-lg font-semibold mt-[1.1rem] outline-0 "
                                         />
                                         </form>
                                     ) : (
 
-                                        <div className="w-96 -ml-[54%] relative"  onClick={() => setUbahTitle(!ubahTitle)}>
-                                        <h1 data-cy='todo-title' className="text-black relative text-[36px] font-bold mt-[6px] ml-[0%] text-left outline-0">
-                                            {getTitle}
-                                        </h1>
+                                        <div className="sm:w-96 mt-[1.1rem]"  onClick={() => setUbahTitle(!ubahTitle)}>
+                                            <h1 data-cy='todo-title' className="text-black sm:relative sm:text-[20px] text-lg font-bold sm:mt-[6px] text-left outline-0">
+                                                {getTitle}
+                                            </h1>
                                         </div>
                                     )
                                     }
 
                                 </div>
                                 
-                                <Button data-cy='todo-title-edit-button' className="absolute ml-[40%] mt-[1px]" onClick={() => setUbahTitle(!ubahTitle)}>
+                                <Button data-cy='todo-title-edit-button' className="sm:ml-[40%] sm:mt-[1px] absolute ml-[75%]" onClick={() => setUbahTitle(!ubahTitle)}>
                                     <img src={ICTodoTitleEdit} alt='todo title edit' className="w-7 h-7"/>
                                 </Button>
-                                <Button data-cy='todo-sort-button'  onClick={() => setOpenDropdownSort(!openDropdownSort)}  className="w-24 h-24 ml-[62%] -mt-4 absolute cursor-pointer" >
+                                <Button data-cy='todo-sort-button'  onClick={() => setOpenDropdownSort(!openDropdownSort)}  className="sm:w-24 sm:h-24 w-16 sm:-mt-[1.3rem] absolute right-0 sm:right-32 cursor-pointer" >
                                     <img src={ICTodoSort} alt="sort data"/>
                                 </Button>
                                     {openDropdownSort && 
@@ -358,7 +359,7 @@ const DetailActivity = () => {
                                         />
                                     }
 
-                                <Button data-cy='todo-add-button' onClick={()=> modalAdd()} className='mr-32 bg-primary hover:bg-secondary w-44'>
+                                <Button data-cy='todo-add-button' onClick={()=> modalAdd()} className=' bg-primary hover:bg-secondary w-32 hidden sm:block absolute right-0'>
                                     <span className="flex mx-auto">
                                     <img src={ICPlus} alt="tabler plus"/>
                                     Tambah
@@ -366,16 +367,24 @@ const DetailActivity = () => {
                                 </Button>
                         </div>
                     </div>
+                    <div className="sm:hidden mt-[100%] absolute right-0 mr-10">
+                            <Button data-cy='todo-add-button' onClick={()=> modalAdd()} className=' bg-primary hover:bg-secondary'>
+                                <span className="flex mx-auto">
+                                <img src={ICPlus} alt="tabler plus"/>
+                                </span>
+                            </Button>
+                    </div>
+                    </>
                     )}
                     <article>
-                    <div className="justify-center mx-auto mt-8 ml-32 mr-32">
-                        <div className="flex flex-wrap"> 
+                    <div className="justify-center mx-auto mt-2 w-full">
+                        <div className="flex flex-wrap p-4 sm:ml-16 sm:mr-16"> 
                             { isLoading ? (
                                 <Loading/>
                                 ) : todo.length > 0 ? (
                                     todo.map((todoItems,index) => (
-                                        <div  key={index} className="shadow-slate-200 shadow-md rounded-md overflow-hidden bg-white w-full ml-20 mt-8">
-                                            <div data-cy='todo-item' className="p-8 flex gap-8">
+                                        <div  key={index} className="shadow-slate-200 shadow-md rounded-md overflow-hidden bg-white w-full mt-8 ">
+                                            <div data-cy='todo-item' className="p-8 flex gap-8 relative">
                                                 <input
                                                     data-cy='todo-item-checkbox'
                                                     type="checkbox" 
@@ -391,8 +400,8 @@ const DetailActivity = () => {
                                                 ) : (
                                                     <label data-cy='todo-item-title'>{todoItems.title}</label>
                                                 )}
-                                                <img onClick={() => modalEdit(todoItems)} data-cy='todo-item-edit-button' src={ICTodoTitleEdit} alt='todo title edit' className="w-5 h-5 cursor-pointer absolute ml-[66%]"/>
-                                                <img onClick={() => modalDelete(todoItems)}  data-cy='todo-item-delete-button' src={ICDelete} alt='delete-item' className="h-6 w-6 cursor-pointer absolute ml-[70%]" />
+                                                <img onClick={() => modalEdit(todoItems)} data-cy='todo-item-edit-button' src={ICTodoTitleEdit} alt='todo title edit' className="w-5 h-5 cursor-pointer absolute right-14"/>
+                                                <img onClick={() => modalDelete(todoItems)}  data-cy='todo-item-delete-button' src={ICDelete} alt='delete-item' className="h-6 w-6 cursor-pointer absolute right-5" />
                                             </div>
                                         </div>
                                         
