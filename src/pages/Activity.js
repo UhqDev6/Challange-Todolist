@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import { showFormattedDate } from "../utils/date";
 import Modal from "../components/molecules/Modal";
 import ModalInfo from "../components/atoms/ModalInfo";
+import Wrapper from "../components/atoms/Wrapper";
 
 const Activity = () => {
 
@@ -57,7 +58,7 @@ const Activity = () => {
 
 
     return(
-        <>
+        <Wrapper>
             <header>
                 <Header/>
             </header>
@@ -82,7 +83,7 @@ const Activity = () => {
                 </div>
                 <article>
                     <div className="flex w-full mx-auto justify-center sm:mt-14 p-12 ">
-                        <div className="flex flex-wrap"> 
+                        <div className="flex flex-wrap gap-2"> 
                             { isLoading ? (
                                 <Loading/>
                                 ) : activity.length > 0 ? (
@@ -123,7 +124,7 @@ const Activity = () => {
                     {modalInformation && <ModalInfo setModalInformation={setModalInformation}/>}
                 </article>
             </main>
-        </>
+        </Wrapper>
     );
 }
 

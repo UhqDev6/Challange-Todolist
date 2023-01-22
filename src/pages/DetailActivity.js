@@ -26,6 +26,7 @@ import ICSortAsc from '../assets/icons/sort-az.png';
 import ICSortDesc from '../assets/icons/sort-za.png';
 import ICSortUnfinish from '../assets/icons/sort-unfinished.png'
 import SortDropdown from "../components/atoms/SortDropdown";
+import Wrapper from "../components/atoms/Wrapper";
 
 const DetailActivity = () => {
 
@@ -298,7 +299,7 @@ const DetailActivity = () => {
 
 
     return(
-        <>
+        <Wrapper>
             <header>
                 <Header/>
             </header>
@@ -463,7 +464,7 @@ const DetailActivity = () => {
                 </article>
                 </>
             </main>
-        </>
+        </Wrapper>
     );
 }
 
